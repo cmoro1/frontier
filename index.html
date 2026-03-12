@@ -3,22 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find Your Fit — Mila Ventures</title>
-<meta name="description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio. Paste your LinkedIn and get matched with opportunities that fit your experience.">
-<meta property="og:title" content="Find Your Fit — Mila Ventures">
-<meta property="og:description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Find Your Fit — Mila Ventures">
-<meta name="twitter:description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><path d='M6 28V10l4.5 6.5L18 6l7.5 10.5L30 10v18' stroke='%236d28d9' stroke-width='2' fill='none'/><circle cx='18' cy='6' r='2' fill='%23a78bfa'/></svg>" type="image/svg+xml">
+<title>Startup jobs — Mila Ventures</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
+  /* Inverted light purple palette */
   --bg-page: #f3eff8;
   --bg-card: #ffffff;
+  --bg-nav: #0e0b1a;
   --accent: #a78bfa;
   --accent-dark: #6d28d9;
   --accent-deeper: #4c1d95;
@@ -29,12 +23,9 @@
   --text-muted: #8878a9;
   --border-light: #e0d8ed;
   --border-lighter: #ece5f5;
-  --success: #059669;
-  --success-bg: rgba(16,185,129,0.06);
-  --success-border: rgba(16,185,129,0.25);
-  --error: #dc2626;
-  --error-bg: rgba(220,38,38,0.06);
-  --error-border: rgba(220,38,38,0.2);
+  /* Original dark palette for nav */
+  --nav-text: #ede8f5;
+  --nav-dimmed: #9b93b8;
 
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'Jost', sans-serif;
@@ -50,7 +41,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ========== NAV ========== */
+/* ========== NAV (stays dark for contrast) ========== */
 nav {
   position: sticky;
   top: 0;
@@ -63,7 +54,7 @@ nav {
   border-bottom: 1px solid var(--border-lighter);
 }
 
-.logo-lockup { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-lockup { display: flex; align-items: center; gap: 12px; }
 
 .logo-mark {
   width: 36px;
@@ -80,187 +71,790 @@ nav {
   line-height: 1.2;
 }
 
-.nav-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.logo-location {
   font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav-back:hover { color: var(--accent-dark); }
-
-.nav-back svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-
-/* ========== MAIN CONTAINER ========== */
-.page-container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 60px 32px 120px;
-}
-
-/* ========== STEP HEADER ========== */
-.step-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.step-label {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 10px;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(167,139,250,0.8);
 }
 
-.step-title {
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+
+/* ========== HERO ========== */
+.hero {
+  text-align: center;
+  padding: 80px 64px 48px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(30px, 4vw, 42px);
-  line-height: 1.15;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text-dark);
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
-.step-title em {
+.hero h1 em {
   font-style: italic;
   color: var(--accent-dark);
   font-weight: 300;
 }
 
-.step-desc {
+.hero-subtitle {
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-secondary);
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto 36px;
 }
 
-/* ========== CARDS ========== */
-.card {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 32px;
-  border: 1px solid var(--border-lighter);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-}
-
-/* ========== LINKEDIN STEP ========== */
-.linkedin-input-group {
+.hero-ctas {
   display: flex;
-  gap: 10px;
-  align-items: stretch;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
-.linkedin-input {
-  flex: 1;
-  padding: 16px 20px;
-  background: var(--bg-page);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--text-dark);
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.linkedin-input::placeholder { color: var(--text-muted); }
-.linkedin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
-
-.linkedin-submit {
-  padding: 16px 28px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   background: var(--accent-dark);
   color: white;
+  padding: 16px 36px;
+  border-radius: 6px;
   border: none;
-  border-radius: 10px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
-  flex-shrink: 0;
+  text-decoration: none;
 }
 
-.linkedin-submit:hover {
+.btn-primary:hover {
   background: var(--accent-deeper);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(109,40,217,0.25);
 }
 
-.linkedin-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--text-dark);
+  padding: 16px 36px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
 }
 
-.linkedin-hint {
-  font-size: 13px;
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.hero-stat {
+  margin-bottom: 8px;
+}
+
+.hero-stat-number {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 12px;
-  font-weight: 300;
 }
 
-/* ========== STATUS MESSAGES ========== */
-.status-msg {
-  display: none;
-  padding: 14px 18px;
-  border-radius: 10px;
+
+/* ========== MAIN CONTENT AREA ========== */
+.content-area {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 64px 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ========== SEARCH / FILTERS ========== */
+.filters-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px 20px 15px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-dark);
   font-family: var(--font-body);
   font-size: 14px;
-  line-height: 1.5;
-  margin-top: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 18px center;
 }
 
-.status-msg.active { display: block; }
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
 
-.status-msg.error {
-  background: var(--error-bg);
-  border: 1px solid var(--error-border);
-  color: var(--error);
+.filter-select {
+  padding: 15px 40px 15px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  min-width: 180px;
+  transition: border-color 0.3s;
 }
 
-/* ========== PROFILE FORM (Step 2) ========== */
-.step-section {
+.filter-select:focus { border-color: var(--accent); }
+
+.more-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 15px 22px;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.more-filters-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+.more-filters-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.3s;
+}
+
+.more-filters-btn.open svg {
+  transform: rotate(180deg);
+}
+
+/* ========== EXPANDED FILTERS ========== */
+.expanded-filters {
   display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  gap: 20px;
+  animation: fadeUp 0.25s ease both;
+  position: relative;
+  z-index: 60;
 }
 
-.step-section.active {
+.expanded-filters.open {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.filter-group label {
   display: block;
-  animation: fadeUp 0.5s ease both;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
 }
 
-.profile-form {
+/* Custom multi-select dropdown */
+.ms-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.ms-trigger {
+  width: 100%;
+  padding: 11px 36px 11px 14px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  text-align: left;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-trigger:hover { border-color: var(--accent); }
+.ms-trigger.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+.ms-trigger.has-selection { color: var(--accent-dark); font-weight: 500; }
+
+.ms-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  z-index: 50;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.ms-menu.open { display: block; }
+
+.ms-option {
+  padding: 9px 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+}
+
+.ms-option:hover { background: var(--accent-bg); }
+
+.ms-option.selected {
+  color: var(--accent-dark);
+  font-weight: 500;
+  background: rgba(167,139,250,0.06);
+}
+
+/* Clear all button */
+.clear-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 0;
+}
+
+.clear-all-btn:hover { color: var(--accent-dark); }
+
+.clear-all-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== TALENT LIST ========== */
+.talent-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+a.talent-card, .talent-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
 }
 
-.form-field label {
+.talent-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 10px 0 0 10px;
+}
+
+/* Accent bar colors per category */
+.talent-card[data-category="engineering"]::before { background: var(--accent); }
+.talent-card[data-category="product"]::before { background: #f59e0b; }
+.talent-card[data-category="research"]::before { background: #10b981; }
+.talent-card[data-category="design"]::before { background: #f472b6; }
+.talent-card[data-category="operations"]::before { background: #fb923c; }
+.talent-card[data-category="growth"]::before { background: #38bdf8; }
+.talent-card[data-category="data"]::before { background: #a78bfa; }
+
+.talent-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.card-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-name {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.card-detail {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.card-detail strong {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  background: var(--bg-page);
+}
+
+.tag.highlight {
+  border-color: rgba(167,139,250,0.25);
+  color: var(--accent-dark);
+  background: rgba(167,139,250,0.06);
+}
+
+.tag.open {
+  border-color: rgba(16,185,129,0.25);
+  color: #059669;
+  background: rgba(16,185,129,0.06);
+}
+
+.card-external {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.3s;
+  align-self: center;
+}
+
+.card-external:hover { background: var(--accent-bg); }
+
+.card-external svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 2;
+}
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.btn-similar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-page);
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.btn-similar:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.btn-similar svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 2;
+}
+
+.btn-similar:hover svg {
+  stroke: var(--accent-dark);
+}
+
+.btn-similar[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text-dark);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 24px 24px;
+  border: 1px solid var(--border-lighter);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.sidebar-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.sidebar-input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+
+.sidebar-input::placeholder { color: var(--text-muted); }
+.sidebar-input:focus { border-color: var(--accent); }
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--text-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 2px;
+}
+
+.sidebar-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.sidebar-linkedin-followup {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-lighter);
+  animation: fadeUp 0.35s ease both;
+}
+.sidebar-linkedin-followup.active { display: block; }
+.sidebar-linkedin-msg {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.sidebar-linkedin-row {
+  display: flex;
+  gap: 8px;
+}
+.sidebar-linkedin-input {
+  flex: 1;
+  padding: 10px 12px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s;
+}
+.sidebar-linkedin-input::placeholder { color: var(--text-muted); }
+.sidebar-linkedin-input:focus { border-color: var(--accent); }
+.sidebar-linkedin-submit {
+  padding: 10px 16px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.sidebar-linkedin-submit:hover { background: var(--accent-deeper); }
+.sidebar-linkedin-skip {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  padding: 0;
+  transition: color 0.3s;
+}
+.sidebar-linkedin-skip:hover { color: var(--text-secondary); }
+
+/* ========== CAN'T FIND A POSTING ========== */
+.hero-fallback {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  animation: fadeUp 0.6s ease both 0.4s;
+}
+
+.hero-fallback a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.hero-fallback a:hover {
+  color: var(--accent-deeper);
+  border-bottom-color: var(--accent-deeper);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 48, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 40px 36px 36px;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--accent-bg);
+  color: var(--text-dark);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.modal-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-field {
+  margin-bottom: 14px;
+}
+
+.modal-label {
   display: block;
   font-family: var(--font-body);
   font-size: 12px;
@@ -268,16 +862,13 @@ nav {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
-.form-field label .req { color: var(--accent-dark); }
-.form-field label .opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-muted); }
-
-.form-input {
+.modal-input {
   display: block;
   width: 100%;
-  padding: 14px 16px;
+  padding: 13px 16px;
   background: var(--bg-page);
   border: 1px solid var(--border-light);
   border-radius: 8px;
@@ -288,18 +879,13 @@ nav {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input::placeholder { color: var(--text-muted); }
-.form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+.modal-input::placeholder { color: var(--text-muted); }
+.modal-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
 
-.form-input:read-only {
-  background: rgba(167,139,250,0.04);
-  color: var(--text-secondary);
-}
-
-.form-textarea {
+.modal-textarea {
   display: block;
   width: 100%;
-  padding: 14px 16px;
+  padding: 13px 16px;
   background: var(--bg-page);
   border: 1px solid var(--border-light);
   border-radius: 8px;
@@ -308,28 +894,21 @@ nav {
   color: var(--text-dark);
   outline: none;
   resize: vertical;
-  min-height: 80px;
+  min-height: 90px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-textarea::placeholder { color: var(--text-muted); }
-.form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+.modal-textarea::placeholder { color: var(--text-muted); }
+.modal-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
 
-.profile-manual-note {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 300;
-  margin-bottom: 4px;
-}
-
-.form-submit {
+.modal-submit {
   display: block;
   width: 100%;
-  padding: 16px;
+  padding: 15px;
   background: var(--accent-dark);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
@@ -337,282 +916,13 @@ nav {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
-.form-submit:hover {
+.modal-submit:hover {
   background: var(--accent-deeper);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(109,40,217,0.25);
-}
-
-/* ========== JOB MATCHES (Step 3) ========== */
-.matches-intro {
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.match-card {
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 24px 26px;
-  border: 1px solid var(--border-lighter);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-.match-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--accent);
-  border-radius: 12px 0 0 12px;
-}
-
-.match-card:hover {
-  border-color: var(--border-light);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  transform: translateY(-1px);
-}
-
-.match-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.match-title {
-  font-family: var(--font-body);
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--text-dark);
-  line-height: 1.3;
-}
-
-.match-company {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-top: 2px;
-}
-
-.match-company strong {
-  font-weight: 500;
-  color: var(--text-dark);
-}
-
-.match-score {
-  flex-shrink: 0;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  background: var(--accent-bg);
-  color: var(--accent-dark);
-  white-space: nowrap;
-}
-
-.match-reason {
-  background: var(--bg-page);
-  border-radius: 8px;
-  padding: 14px 16px;
-  margin-top: 14px;
-}
-
-.match-reason-label {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-
-.match-reason-text {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-.match-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 14px;
-}
-
-.match-tag {
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 400;
-  border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  background: var(--bg-page);
-}
-
-.match-apply {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 16px;
-  padding: 10px 20px;
-  background: var(--text-dark);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.match-apply:hover {
-  background: var(--accent-dark);
-  transform: translateY(-1px);
-}
-
-.match-apply svg {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-
-/* Interest refinement box */
-.interest-box {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 28px;
-  border: 1px solid var(--border-lighter);
-  margin-top: 32px;
-}
-
-.interest-title {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 6px;
-}
-
-.interest-desc {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-}
-
-.interest-submit {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  background: var(--accent-dark);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 8px;
-}
-
-.interest-submit:hover {
-  background: var(--accent-deeper);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
-}
-
-/* ========== PROGRESS BAR ========== */
-.progress-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 48px;
-}
-
-.progress-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--border-light);
-  transition: all 0.3s;
-}
-
-.progress-dot.active {
-  background: var(--accent-dark);
-  box-shadow: 0 0 0 4px rgba(109,40,217,0.12);
-}
-
-.progress-dot.done {
-  background: var(--success);
-}
-
-.progress-line {
-  width: 40px;
-  height: 2px;
-  background: var(--border-light);
-  transition: background 0.3s;
-}
-
-.progress-line.done {
-  background: var(--success);
-}
-
-/* ========== STEP BACK BUTTON ========== */
-.step-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 8px;
-  transition: color 0.3s;
-}
-
-.step-back:hover { color: var(--accent-dark); }
-
-.step-back svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
 }
 
 /* ========== ANIMATIONS ========== */
@@ -621,145 +931,242 @@ nav {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.page-container { animation: fadeUp 0.5s ease both; }
+.hero { animation: fadeUp 0.6s ease both; }
+.hero h1 { animation: fadeUp 0.6s ease both 0.1s; }
+.hero-subtitle { animation: fadeUp 0.6s ease both 0.2s; }
+.hero-ctas { animation: fadeUp 0.6s ease both 0.3s; }
+.hero-stat { animation: fadeUp 0.6s ease both 0.35s; }
+
+.talent-card { animation: fadeUp 0.4s ease both; }
+.talent-card:nth-child(1) { animation-delay: 0.05s; }
+.talent-card:nth-child(2) { animation-delay: 0.08s; }
+.talent-card:nth-child(3) { animation-delay: 0.11s; }
+.talent-card:nth-child(4) { animation-delay: 0.14s; }
+.talent-card:nth-child(5) { animation-delay: 0.17s; }
+.talent-card:nth-child(6) { animation-delay: 0.20s; }
+.talent-card:nth-child(7) { animation-delay: 0.23s; }
+.talent-card:nth-child(8) { animation-delay: 0.26s; }
+.talent-card:nth-child(9) { animation-delay: 0.29s; }
+.talent-card:nth-child(10) { animation-delay: 0.32s; }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-  nav { padding: 18px 24px; }
-  .page-container { padding: 40px 20px 80px; }
-  .card { padding: 24px 20px; }
-  .linkedin-input-group { flex-direction: column; }
-  .form-row { grid-template-columns: 1fr; }
+@media (max-width: 1024px) {
+  .content-area {
+    grid-template-columns: 1fr;
+    padding: 24px 24px 60px;
+  }
+  .sidebar { position: static; }
 }
 
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .hero { padding: 48px 24px 36px; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .filters-row { flex-direction: column; }
+  .filter-select { min-width: 100%; }
+}
 </style>
 </head>
 <body>
 
 <!-- ========== NAV ========== -->
 <nav>
-  <a href="talent-marketplace-v4-light-purple.html" class="logo-lockup">
+  <div class="logo-lockup">
     <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Delicate open 'M' monogram with serif-inspired terminals -->
       <path d="M6 28V10l4.5 6.5L18 6l7.5 10.5L30 10v18" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       <circle cx="18" cy="6" r="1.6" fill="#a78bfa"/>
       <line x1="6" y1="28" x2="8.5" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
       <line x1="27.5" y1="28" x2="30" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
     </svg>
     <div class="logo-name">Mila Ventures</div>
-  </a>
-  <a href="talent-marketplace-v4-light-purple.html" class="nav-back">
-    <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-    Back to all jobs
-  </a>
+  </div>
+  <div class="nav-right">
+  </div>
 </nav>
 
-<div class="page-container">
-
-  <!-- Progress bar -->
-  <div class="progress-bar">
-    <div class="progress-dot active" id="dot1"></div>
-    <div class="progress-line" id="line1"></div>
-    <div class="progress-dot" id="dot2"></div>
-    <div class="progress-line" id="line2"></div>
-    <div class="progress-dot" id="dot3"></div>
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <h1>Build the AI that<br><em>should</em> exist</h1>
+  <p class="hero-subtitle">Join a Mila Ventures portfolio company and work at the frontier of artificial intelligence</p>
+  <div class="hero-ctas">
+    <a href="find-your-fit.html" class="btn-primary">Find your fit →</a>
   </div>
+  <p class="hero-fallback">Can't find a posting you love? <a onclick="openProfileModal()">Send us your profile and we'll find a match</a></p>
+</section>
 
-  <!-- ========== STEP 1: LinkedIn URL ========== -->
-  <div class="step-section active" id="step1">
-    <div class="step-header">
-      <div class="step-label">Step 1 of 3</div>
-      <h1 class="step-title">Let's find your <em>fit</em></h1>
-      <p class="step-desc">Paste your LinkedIn profile URL and we'll match you with the most relevant roles across our portfolio.</p>
-    </div>
-
-    <div class="card">
-      <div class="linkedin-input-group">
-        <input type="url" class="linkedin-input" id="linkedinUrl" placeholder="https://linkedin.com/in/yourprofile" autocomplete="off">
-        <button class="linkedin-submit" id="linkedinBtn" onclick="submitLinkedIn()">Continue</button>
-      </div>
-      <p class="linkedin-hint">We'll use your profile link to get started, then you can fill in the rest.</p>
-
-      <!-- Status messages -->
-      <div class="status-msg error" id="errorMsg"></div>
-    </div>
-  </div>
-
-  <!-- ========== STEP 2: Confirm / Fill Profile ========== -->
-  <div class="step-section" id="step2">
-    <button class="step-back" onclick="goBackToStep1()">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back
+<!-- ========== PROFILE SUBMISSION MODAL ========== -->
+<div class="modal-overlay" id="profileModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeProfileModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="step-header">
-      <div class="step-label">Step 2 of 3</div>
-      <h1 class="step-title">Confirm your <em>details</em></h1>
-      <p class="step-desc" id="step2Desc">We pulled the following from your LinkedIn. Make sure everything looks right.</p>
+    <div class="modal-title">Send us your profile</div>
+    <p class="modal-desc">Tell us a bit about yourself and we'll match you with the right opportunity at a Mila Ventures portfolio company.</p>
+    <div class="modal-field">
+      <label class="modal-label">Name <span style="color:var(--accent-dark);">*</span></label>
+      <input type="text" class="modal-input" placeholder="Your full name" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Email <span style="color:var(--accent-dark);">*</span></label>
+      <input type="email" class="modal-input" placeholder="you@example.com" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">LinkedIn URL <span style="color:var(--accent-dark);">*</span></label>
+      <input type="url" class="modal-input" placeholder="https://linkedin.com/in/yourprofile" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Tell us what you're excited about <span style="color:var(--text-muted); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+      <textarea class="modal-textarea" placeholder="What kind of problems do you want to solve? What stage of company excites you?"></textarea>
+    </div>
+    <button class="modal-submit">Submit Profile</button>
+  </div>
+</div>
+
+
+<!-- ========== MAIN CONTENT ========== -->
+<div class="content-area">
+  <main>
+    <!-- Filters -->
+    <div class="filters-row">
+      <input type="text" class="search-input" placeholder="Search by job title, company, or keyword...">
+      <button class="more-filters-btn" onclick="toggleFilters()">
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        Filters
+      </button>
     </div>
 
-    <div class="card">
-      <p class="profile-manual-note" id="manualNote">
-        Please fill in your details below. All fields marked with * are required.
-      </p>
-
-      <div class="profile-form" id="profileForm">
-        <div class="form-row">
-          <div class="form-field">
-            <label>Full name <span class="req">*</span></label>
-            <input type="text" class="form-input" id="fieldName" placeholder="Your full name" required>
-          </div>
-          <div class="form-field">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" class="form-input" id="fieldEmail" placeholder="you@example.com" required>
+    <div class="expanded-filters" id="expandedFilters">
+      <div class="filter-group">
+        <label>Location</label>
+        <div class="ms-dropdown" id="filterLocation" data-field="location">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Montreal" onclick="toggleOption(this)">Montreal</div>
+            <div class="ms-option" data-value="Toronto" onclick="toggleOption(this)">Toronto</div>
+            <div class="ms-option" data-value="Vancouver" onclick="toggleOption(this)">Vancouver</div>
+            <div class="ms-option" data-value="Remote - Canada" onclick="toggleOption(this)">Remote - Canada</div>
+            <div class="ms-option" data-value="Remote - USA" onclick="toggleOption(this)">Remote - USA</div>
           </div>
         </div>
-        <div class="form-field">
-          <label>Current role <span class="req">*</span></label>
-          <input type="text" class="form-input" id="fieldRole" placeholder="e.g. Senior ML Engineer at Acme Corp" required>
-        </div>
-        <div class="form-field">
-          <label>LinkedIn URL</label>
-          <input type="url" class="form-input" id="fieldLinkedin" readonly>
-        </div>
-        <div class="form-field">
-          <label>Anything else you'd like us to know? <span class="opt">(optional)</span></label>
-          <textarea class="form-textarea" id="fieldNotes" placeholder="Skills you want to use, industries that excite you, preferred company stage..."></textarea>
-        </div>
-        <button type="button" class="form-submit" onclick="submitProfile()">Find my matches →</button>
       </div>
-
+      <div class="filter-group">
+        <label>Stage</label>
+        <div class="ms-dropdown" id="filterStage" data-field="stage">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Pre-Seed" onclick="toggleOption(this)">Pre-Seed</div>
+            <div class="ms-option" data-value="Seed" onclick="toggleOption(this)">Seed</div>
+            <div class="ms-option" data-value="Series A" onclick="toggleOption(this)">Series A</div>
+            <div class="ms-option" data-value="Series B+" onclick="toggleOption(this)">Series B+</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>AI Domain</label>
+        <div class="ms-dropdown" id="filterAIDomain" data-field="aiDomain">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Computer Vision" onclick="toggleOption(this)">Computer Vision</div>
+            <div class="ms-option" data-value="NLP" onclick="toggleOption(this)">NLP</div>
+            <div class="ms-option" data-value="LLMs" onclick="toggleOption(this)">LLMs</div>
+            <div class="ms-option" data-value="Reinforcement Learning" onclick="toggleOption(this)">Reinforcement Learning</div>
+            <div class="ms-option" data-value="Generative AI" onclick="toggleOption(this)">Generative AI</div>
+            <div class="ms-option" data-value="Robotics" onclick="toggleOption(this)">Robotics</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Seniority</label>
+        <div class="ms-dropdown" id="filterSeniority" data-field="seniority">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Intern / Co-op" onclick="toggleOption(this)">Intern / Co-op</div>
+            <div class="ms-option" data-value="Junior (0-2 years)" onclick="toggleOption(this)">Junior (0-2 years)</div>
+            <div class="ms-option" data-value="Mid (3-5 years)" onclick="toggleOption(this)">Mid (3-5 years)</div>
+            <div class="ms-option" data-value="Senior (5+ years)" onclick="toggleOption(this)">Senior (5+ years)</div>
+            <div class="ms-option" data-value="Lead / Staff" onclick="toggleOption(this)">Lead / Staff</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Industry</label>
+        <div class="ms-dropdown" id="filterIndustry" data-field="industry">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Health Tech" onclick="toggleOption(this)">Health Tech</div>
+            <div class="ms-option" data-value="Life Sciences" onclick="toggleOption(this)">Life Sciences</div>
+            <div class="ms-option" data-value="Ag / Food Tech" onclick="toggleOption(this)">Ag / Food Tech</div>
+            <div class="ms-option" data-value="Fintech" onclick="toggleOption(this)">Fintech</div>
+            <div class="ms-option" data-value="Climate Tech" onclick="toggleOption(this)">Climate Tech</div>
+            <div class="ms-option" data-value="Energy" onclick="toggleOption(this)">Energy</div>
+            <div class="ms-option" data-value="Autonomous Systems" onclick="toggleOption(this)">Autonomous Systems</div>
+            <div class="ms-option" data-value="EdTech" onclick="toggleOption(this)">EdTech</div>
+            <div class="ms-option" data-value="Creative & Media" onclick="toggleOption(this)">Creative & Media</div>
+            <div class="ms-option" data-value="Manufacturing & Supply Chain" onclick="toggleOption(this)">Manufacturing & Supply Chain</div>
+            <div class="ms-option" data-value="Cybersecurity" onclick="toggleOption(this)">Cybersecurity</div>
+            <div class="ms-option" data-value="Foundational AI" onclick="toggleOption(this)">Foundational AI</div>
+            <div class="ms-option" data-value="AI Infrastructure" onclick="toggleOption(this)">AI Infrastructure</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Department</label>
+        <div class="ms-dropdown" id="filterDepartment" data-field="department">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Founding / Executive Team" onclick="toggleOption(this)">Founding / Executive Team</div>
+            <div class="ms-option" data-value="Engineering" onclick="toggleOption(this)">Engineering</div>
+            <div class="ms-option" data-value="Product" onclick="toggleOption(this)">Product</div>
+            <div class="ms-option" data-value="Research & Development" onclick="toggleOption(this)">Research & Development</div>
+            <div class="ms-option" data-value="Design" onclick="toggleOption(this)">Design</div>
+            <div class="ms-option" data-value="Marketing" onclick="toggleOption(this)">Marketing</div>
+            <div class="ms-option" data-value="Sales & GTM" onclick="toggleOption(this)">Sales & GTM</div>
+            <div class="ms-option" data-value="Operations" onclick="toggleOption(this)">Operations</div>
+            <div class="ms-option" data-value="People / HR" onclick="toggleOption(this)">People / HR</div>
+            <div class="ms-option" data-value="Finance" onclick="toggleOption(this)">Finance</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <button class="clear-all-btn" onclick="clearAllFilters()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Clear all
+      </button>
     </div>
-  </div>
 
-  <!-- ========== STEP 3: Job Matches ========== -->
-  <div class="step-section" id="step3">
-    <button class="step-back" onclick="goBackToStep2()">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
-      Back
-    </button>
-    <div class="step-header">
-      <div class="step-label">Step 3 of 3</div>
-      <h1 class="step-title">Your <em>matches</em></h1>
-      <p class="step-desc">Based on your experience, here are the roles we think you'd thrive in.</p>
+    <!-- Job Listings (loaded from Airtable) -->
+    <div class="talent-list" id="jobList">
+      <div style="text-align:center; padding:48px 0; color:var(--text-muted); font-size:14px;">Loading roles...</div>
     </div>
+  </main>
 
-    <div id="matchResults"></div>
-
-    <!-- Refine with interests -->
-    <div class="interest-box">
-      <div class="interest-title">Want better matches?</div>
-      <p class="interest-desc">Tell us more about what excites you and we'll refine your results.</p>
-      <textarea class="form-textarea" id="interestText" placeholder="e.g. I'm passionate about climate tech, love early-stage chaos, and want to lead an engineering team..."></textarea>
-      <button class="interest-submit" onclick="refineMatches()">Refine matches →</button>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Stay Close to the Frontier</div>
+      <p class="sidebar-desc">New roles at tomorrow's biggest AI companies, straight to your inbox.</p>
+      <input type="text" class="sidebar-input" placeholder="Your name">
+      <input type="email" class="sidebar-input" placeholder="Your email">
+      <button class="sidebar-btn">I'm in</button>
+      <div class="sidebar-linkedin-followup" id="linkedinFollowup">
+        <p class="sidebar-linkedin-msg">Want better-tailored matches? Add your LinkedIn so we can learn more about you.</p>
+        <div class="sidebar-linkedin-row">
+          <input type="url" class="sidebar-linkedin-input" id="sidebarLinkedin" placeholder="linkedin.com/in/yourprofile">
+          <button class="sidebar-linkedin-submit" id="sidebarLinkedinBtn">Submit</button>
+        </div>
+        <button class="sidebar-linkedin-skip" id="sidebarLinkedinSkip">Skip for now</button>
+      </div>
     </div>
-  </div>
-
+  </aside>
 </div>
 
 <script>
 // ============================================================
-// CONFIG
+// Airtable Configuration
 // ============================================================
-// Airtable
 var PROXY_URL = 'https://frontier-proxy.christinamoro3.workers.dev';
 var AIRTABLE_BASE_ID = 'appP3T62XSwUvnCZk';
 var AIRTABLE_JOBS_TABLE = 'Job%20Listings';
@@ -778,39 +1185,40 @@ function airtableLeadsUrl(extra) {
   return '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_LEADS_TABLE + (extra || '');
 }
 
-// ============================================================
-// STATE
-// ============================================================
-var profileData = {
-  linkedinUrl: '',
-  name: '',
-  email: '',
-  role: '',
-  notes: ''
+var allJobs = [];
+
+// Category-to-color mapping for avatar badges
+var CATEGORY_COLORS = {
+  engineering: '#6d28d9', product: '#f59e0b', research: '#10b981',
+  design: '#f472b6', operations: '#fb923c', growth: '#38bdf8',
+  data: '#a78bfa', marketing: '#0d9488', sales: '#6366f1',
+  'default': '#1e293b'
 };
 
-// ============================================================
-// JOBS — fetched from Airtable
-// ============================================================
-var allJobs = [];
-var jobsLoaded = false;
+// Helper: normalize a field value to a flat array of strings
+// Airtable multi-select → array, single-select → string, missing → empty
+function toArray(val) {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  return [val];
+}
 
-function fetchJobsFromAirtable(callback) {
-  if (!AIRTABLE_BASE_ID) {
-    if (callback) callback([]);
-    return;
-  }
+// ============================================================
+// Fetch jobs from Airtable
+// ============================================================
+function fetchJobs() {
   var path = '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_JOBS_TABLE
     + '?filterByFormula=' + encodeURIComponent("{Status}='Open'");
 
   proxyFetch(path)
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    if (!data.records) { if (callback) callback([]); return; }
+    if (!data.records) {
+      document.getElementById('jobList').innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);">Could not load jobs. Please try again later.</div>';
+      return;
+    }
     allJobs = data.records.map(function(rec) {
       var f = rec.fields;
-      var kwString = f['Keywords'] || '';
-      var kwArray = kwString.split(',').map(function(k) { return k.trim().toLowerCase(); }).filter(Boolean);
       return {
         id: rec.id,
         title: f['Job Title'] || '',
@@ -819,8 +1227,8 @@ function fetchJobsFromAirtable(callback) {
         companyUrl: f['Company Website URL'] || '',
         desc: f['Job Description'] || '',
         tags: f['Tags'] || [],
-        keywords: kwArray,
-        category: (f['Category'] || '').toLowerCase(),
+        keywords: (f['Keywords'] || '').split(',').map(function(k) { return k.trim().toLowerCase(); }).filter(Boolean),
+        category: f['Category'] || '',
         status: f['Status'] || '',
         datePosted: f['Date Posted'] || '',
         location: f['Location'] || '',
@@ -831,465 +1239,385 @@ function fetchJobsFromAirtable(callback) {
         department: f['Department'] || ''
       };
     });
-    jobsLoaded = true;
-    if (callback) callback(allJobs);
+
+    renderJobs(allJobs);
   })
   .catch(function() {
-    if (callback) callback([]);
+    document.getElementById('jobList').innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);">Could not load jobs. Please try again later.</div>';
   });
 }
 
-// Load jobs on page load
-fetchJobsFromAirtable();
-
 // ============================================================
-// PARSE NAME FROM LINKEDIN URL SLUG
+// Check if a job was posted within last 7 days
 // ============================================================
-// Common first names used to split concatenated slugs like "julietopp" → "Julie Topp"
-var COMMON_FIRST_NAMES = [
-  'aaron','abby','adam','adrian','aidan','aiden','aleksander','aleksandra','alex','alexander','alexandra','alexis','alice','alicia','alison','allison','alyssa','amanda','amber','amy','ana','andrea','andrzej','andrew','angela','anna','anne','annie','anthony','antonio','ariana','arjun','ashley','audrey','austin',
-  'bailey','barbara','becky','ben','benjamin','beth','blake','brad','brandon','brenda','brian','brianna','brittany','brooke','bruce','bryan',
-  'caitlin','caleb','cameron','carl','carlos','carmen','carol','caroline','carter','casey','catherine','chad','charles','charlie','charlotte','chase','chelsea','cheryl','chris','christian','christina','christine','christopher','cindy','claire','clara','cole','colin','colleen','connor','courtney','craig','crystal','curtis','cynthia',
-  'dale','daniel','danielle','darren','dave','david','dawn','dean','debbie','deborah','debra','deepak','denis','denise','dennis','derek','diana','diane','dmitri','dominic','donna','doris','dorothy','doug','douglas','drew','dustin','dylan',
-  'eddie','edward','eileen','elaine','elena','eli','elijah','elizabeth','ella','ellen','emily','emma','eric','erica','erik','erin','ethan','eva','evan','evelyn',
-  'faith','felicia','fernando','francesca','francisco','frank','fred','frederick',
-  'gabriel','gail','garrett','gary','gavin','george','gerald','giovanni','gloria','grace','grant','greg','gregory','guillaume','gwen',
-  'hailey','hannah','harold','harry','hassan','heather','helen','henry','holly','howard','hunter',
-  'ian','igor','irene','isaac','isabel','isabella','ivan',
-  'jack','jackson','jacob','jacqueline','jade','jake','james','jamie','jane','janet','janice','jared','jasmine','jason','jay','jean','jeff','jeffrey','jen','jenna','jennifer','jenny','jeremy','jerry','jesse','jessica','jill','jim','jimmy','joan','joanna','jocelyn','joe','joel','john','jonathan','jordan','jorge','jose','joseph','josh','joshua','joyce','juan','judith','judy','julia','julian','julie','justin',
-  'kara','karen','kate','katherine','kathleen','kathryn','kathy','katie','kayla','keith','kelly','ken','kendra','kenneth','kevin','kim','kimberly','krista','kristen','kristin','kristina','kurt','kyle',
-  'lance','larry','laura','lauren','lawrence','leah','lee','leon','leonard','leslie','liam','lily','linda','lindsay','lindsey','lisa','logan','lori','louis','lucas','lucy','luis','luke','lynn',
-  'mackenzie','madeline','madison','maggie','mandy','marc','marco','marcus','margaret','maria','marie','marilyn','mario','mark','martha','martin','mary','mason','matt','matthew','maureen','max','megan','melissa','michael','michele','michelle','miguel','mike','mila','miranda','mitchell','mohammed','molly','monica','morgan','mustafa',
-  'nancy','natalie','natasha','nathan','nathaniel','neil','nicholas','nicole','nikita','nina','noah','noel','nora','norma',
-  'olivia','olga','omar','oscar','owen',
-  'paige','pamela','patricia','patrick','paul','paula','pavel','pedro','peggy','penny','peter','philip','phillip','philippe','phyllis','pierre','priya',
-  'quinn',
-  'rachel','rajesh','ralph','ramon','randall','randy','ravi','ray','raymond','rebecca','renee','rhonda','ricardo','richard','rick','rita','robert','roberto','robin','roger','ron','ronald','rosa','rose','ross','roxanne','roy','ruby','russell','ruth','ryan',
-  'sabrina','sally','sam','samantha','samuel','sandra','sandy','sanjay','sara','sarah','scott','sean','sergei','seth','shane','shannon','sharon','shawn','sheila','shelby','sherry','shirley','sierra','sophia','spencer','stacy','stefan','stephanie','stephen','steve','steven','stuart','sue','summer','sunil','susan','suzanne','sydney',
-  'tamara','tammy','tanya','tara','tatiana','taylor','teresa','terri','terry','theresa','thomas','tiffany','tim','timothy','tina','todd','tom','tommy','tomasz','tony','tracy','travis','trevor','tricia','troy','tyler',
-  'valerie','vanessa','vera','veronica','vicki','victoria','vincent','virginia','vivian','vladimir',
-  'walter','wanda','warren','wayne','wendy','wesley','whitney','william','willie','wojciech','wyatt',
-  'xavier','xin',
-  'yolanda','youssef','yvonne',
-  'zachary','zbigniew','zoe'
-];
-
-var firstNameSet = {};
-COMMON_FIRST_NAMES.forEach(function(n) { firstNameSet[n] = true; });
-
-function parseNameFromUrl(url) {
-  // Extract the slug from linkedin.com/in/some-slug, handle trailing slash
-  var match = url.match(/linkedin\.com\/in\/([^\/\?#]+)/i);
-  if (!match) return '';
-
-  var slug = decodeURIComponent(match[1]).toLowerCase().trim();
-
-  // Remove trailing numbers/hashes LinkedIn sometimes adds (e.g. "john-doe-a1b2c3" or "john-doe-123456789")
-  slug = slug.replace(/-[a-f0-9]{4,}$/i, '');
-  slug = slug.replace(/-\d{3,}$/i, '');
-
-  // If slug has hyphens/underscores/dots, split on those
-  if (/[-_.]/.test(slug)) {
-    var parts = slug.split(/[-_.]+/);
-    return parts.map(function(p) {
-      if (!p) return '';
-      return p.charAt(0).toUpperCase() + p.slice(1);
-    }).filter(function(p) { return p.length > 0; }).join(' ');
-  }
-
-  // No separators — try to split a concatenated slug like "julietopp" or "christinamoro"
-  // Try matching a known first name from the beginning
-  for (var len = Math.min(slug.length - 1, 12); len >= 2; len--) {
-    var candidate = slug.substring(0, len);
-    if (firstNameSet[candidate]) {
-      var remainder = slug.substring(len);
-      if (remainder.length >= 2) {
-        var firstName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
-        var lastName = remainder.charAt(0).toUpperCase() + remainder.slice(1);
-        return firstName + ' ' + lastName;
-      }
-    }
-  }
-
-  // Fallback: just capitalize the whole slug as one name
-  return slug.charAt(0).toUpperCase() + slug.slice(1);
+function isNew(dateStr) {
+  if (!dateStr) return false;
+  var posted = new Date(dateStr);
+  var now = new Date();
+  var diff = (now - posted) / (1000 * 60 * 60 * 24);
+  return diff <= 7;
 }
 
 // ============================================================
-// STEP 1 — Submit LinkedIn URL
+// Render individual tags — handles both arrays and strings
 // ============================================================
-function submitLinkedIn() {
-  var urlInput = document.getElementById('linkedinUrl');
-  var btn = document.getElementById('linkedinBtn');
-  var url = urlInput.value.trim();
+function renderTagsHtml(value, cssClass) {
+  var items = toArray(value);
+  var html = '';
+  items.forEach(function(v) {
+    if (v) html += '<span class="tag ' + cssClass + '">' + escHtml(v) + '</span>';
+  });
+  return html;
+}
 
-  // Validate
-  if (!url || url.indexOf('linkedin.com/in/') === -1) {
-    urlInput.style.borderColor = 'var(--error)';
-    showError('Please enter a valid LinkedIn profile URL (e.g. linkedin.com/in/yourname).');
+// ============================================================
+// Render job cards
+// ============================================================
+function renderJobs(jobs) {
+  var list = document.getElementById('jobList');
+
+  if (jobs.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);font-size:14px;">No roles match your search. Try adjusting filters or <a href="find-your-fit.html" style="color:var(--accent-dark);text-decoration:none;border-bottom:1px solid var(--accent-dark);">find your fit</a>.</div>';
     return;
   }
-  urlInput.style.borderColor = '';
-  hideError();
 
-  profileData.linkedinUrl = url;
-  profileData.name = parseNameFromUrl(url);
-
-  // Check Airtable Lead Capture for returning user, or create new lead
-  btn.disabled = true;
-  btn.textContent = 'Loading...';
-  lookupLead(url, function(existing) {
-    if (existing) {
-      // Returning user — populate from existing data
-      if (existing.name) profileData.name = existing.name;
-      if (existing.email) profileData.email = existing.email;
-      if (existing.role) profileData.role = existing.role;
-      if (existing.details) profileData.notes = existing.details;
-      btn.disabled = false;
-      btn.textContent = 'CONTINUE';
-      goToStep2();
-    } else {
-      // New user — create record immediately with LinkedIn URL + parsed name
-      createLead({ linkedinUrl: url, name: profileData.name }, function() {
-        btn.disabled = false;
-        btn.textContent = 'CONTINUE';
-        goToStep2();
-      });
-    }
-  });
-}
-
-// ============================================================
-// UI HELPERS
-// ============================================================
-function hideError() {
-  document.getElementById('errorMsg').classList.remove('active');
-}
-
-function showError(html) {
-  document.getElementById('errorMsg').innerHTML = html;
-  document.getElementById('errorMsg').classList.add('active');
-}
-
-// ============================================================
-// STEP 2 — Fill in Profile
-// ============================================================
-function goToStep2() {
-  document.getElementById('dot1').className = 'progress-dot done';
-  document.getElementById('line1').className = 'progress-line done';
-  document.getElementById('dot2').className = 'progress-dot active';
-
-  document.getElementById('step1').classList.remove('active');
-  document.getElementById('step2').classList.add('active');
-
-  document.getElementById('fieldLinkedin').value = profileData.linkedinUrl;
-  document.getElementById('fieldName').value = profileData.name || '';
-  document.getElementById('fieldEmail').value = profileData.email || '';
-  document.getElementById('fieldRole').value = profileData.role || '';
-  document.getElementById('fieldNotes').value = profileData.notes || '';
-
-  var hasAllFields = profileData.name && profileData.email && profileData.role;
-
-  if (hasAllFields) {
-    document.getElementById('step2Desc').textContent = 'Welcome back, ' + profileData.name.split(' ')[0] + '! We filled in your info from last time. Update anything that\'s changed.';
-    document.getElementById('manualNote').textContent = 'Your details from your last visit are below. Update anything that\'s changed.';
-  } else if (profileData.name) {
-    document.getElementById('step2Desc').textContent = 'Hi ' + profileData.name.split(' ')[0] + '! Please confirm your name and fill in the rest.';
-    document.getElementById('manualNote').textContent = 'Please fill in your details below. All fields marked with * are required.';
-  } else {
-    document.getElementById('step2Desc').textContent = 'Please enter your details below so we can find your best matches.';
-    document.getElementById('manualNote').textContent = 'Please fill in your details below. All fields marked with * are required.';
-  }
-
-  // Focus first empty required field
-  var firstEmpty = !document.getElementById('fieldName').value ? 'fieldName' : 'fieldEmail';
-  setTimeout(function() { document.getElementById(firstEmpty).focus(); }, 100);
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function submitProfile() {
-  var nameVal = document.getElementById('fieldName').value.trim();
-  var emailVal = document.getElementById('fieldEmail').value.trim();
-  var roleVal = document.getElementById('fieldRole').value.trim();
-
-  // Validate
-  var valid = true;
-  if (!nameVal) { document.getElementById('fieldName').style.borderColor = 'var(--error)'; valid = false; }
-  if (!emailVal) { document.getElementById('fieldEmail').style.borderColor = 'var(--error)'; valid = false; }
-  if (!roleVal) { document.getElementById('fieldRole').style.borderColor = 'var(--error)'; valid = false; }
-  if (!valid) return;
-
-  profileData.name = nameVal;
-  profileData.email = emailVal;
-  profileData.role = roleVal;
-  profileData.notes = document.getElementById('fieldNotes').value;
-
-  updateSheetEntry(profileData);
-  goToStep3();
-}
-
-// ============================================================
-// STEP 3 — Job Matches
-// ============================================================
-function goToStep3() {
-  document.getElementById('dot2').className = 'progress-dot done';
-  document.getElementById('line2').className = 'progress-line done';
-  document.getElementById('dot3').className = 'progress-dot active';
-
-  document.getElementById('step2').classList.remove('active');
-  document.getElementById('step3').classList.add('active');
-
-  if (jobsLoaded && allJobs.length > 0) {
-    var matches = generateMatches(profileData);
-    renderMatches(matches);
-  } else {
-    // Jobs haven't loaded yet — fetch and then render
-    document.getElementById('matchResults').innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:24px;">Loading job listings...</p>';
-    fetchJobsFromAirtable(function() {
-      var matches = generateMatches(profileData);
-      renderMatches(matches);
-    });
-  }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function generateMatches(profile) {
-  var roleWords = (profile.role + ' ' + profile.notes).toLowerCase().split(/\s+/);
-
-  var scored = allJobs.map(function(job) {
-    var score = 0;
-    var reasons = [];
-
-    job.keywords.forEach(function(keyword) {
-      var kw = keyword.toLowerCase();
-      if (roleWords.some(function(w) { return w.indexOf(kw) !== -1 || kw.indexOf(w) !== -1; })) {
-        score += 2;
-      }
-    });
-
-    var roleLC = profile.role.toLowerCase();
-    if (roleLC.indexOf('engineer') !== -1 || roleLC.indexOf('ml') !== -1 || roleLC.indexOf('machine learning') !== -1) {
-      if (job.keywords.indexOf('machine learning') !== -1 || job.keywords.indexOf('deep learning') !== -1 || job.keywords.indexOf('engineering') !== -1) {
-        reasons.push('Your engineering background aligns well with this technical role');
-        score += 3;
-      }
-    }
-    if (roleLC.indexOf('product') !== -1 || roleLC.indexOf('pm') !== -1) {
-      if (job.keywords.indexOf('product management') !== -1 || job.keywords.indexOf('roadmap') !== -1) {
-        reasons.push('Your product experience maps directly to this role');
-        score += 3;
-      }
-    }
-    if (roleLC.indexOf('research') !== -1 || roleLC.indexOf('phd') !== -1 || roleLC.indexOf('scientist') !== -1) {
-      if (job.keywords.indexOf('research') !== -1 || job.keywords.indexOf('AI research') !== -1) {
-        reasons.push('Your research background is a strong match for this position');
-        score += 4;
-      }
-    }
-    if (roleLC.indexOf('marketing') !== -1 || roleLC.indexOf('growth') !== -1) {
-      if (job.keywords.indexOf('marketing') !== -1 || job.keywords.indexOf('growth') !== -1) {
-        reasons.push('Your growth and marketing expertise is exactly what this role needs');
-        score += 3;
-      }
-    }
-    if (roleLC.indexOf('sales') !== -1 || roleLC.indexOf('business dev') !== -1) {
-      if (job.keywords.indexOf('sales') !== -1 || job.keywords.indexOf('business development') !== -1) {
-        reasons.push('Your business development experience translates well here');
-        score += 3;
-      }
-    }
-    if (roleLC.indexOf('senior') !== -1 || roleLC.indexOf('lead') !== -1 || roleLC.indexOf('head') !== -1 || roleLC.indexOf('director') !== -1 || roleLC.indexOf('vp') !== -1) {
-      if (job.keywords.indexOf('leadership') !== -1 || job.keywords.indexOf('executive') !== -1 || job.title.indexOf('Senior') !== -1 || job.title.indexOf('Head') !== -1 || job.title.indexOf('VP') !== -1) {
-        reasons.push('Your seniority level matches the leadership expectations');
-        score += 2;
-      }
-    }
-    if (roleLC.indexOf('design') !== -1 || roleLC.indexOf('ux') !== -1 || roleLC.indexOf('ui') !== -1) {
-      reasons.push('Your design expertise would bring strong product thinking to this role');
-      score += 2;
-    }
-    if (roleLC.indexOf('founder') !== -1 || roleLC.indexOf('eir') !== -1 || roleLC.indexOf('entrepreneur') !== -1) {
-      if (job.keywords.indexOf('founding team') !== -1 || job.keywords.indexOf('startup') !== -1 || job.keywords.indexOf('strategy') !== -1) {
-        reasons.push('Your entrepreneurial experience is a great fit for this founding-stage role');
-        score += 3;
-      }
-    }
-
-    if (reasons.length === 0) {
-      if (score > 0) {
-        reasons.push('Your skill set has meaningful overlap with the requirements for this role');
-      } else {
-        reasons.push('This role at an AI-focused company could be a natural next step given your background');
-        score = 1;
-      }
-    }
-
-    var pct = Math.min(97, Math.max(60, Math.round(55 + score * 5)));
-    return {
-      id: job.id, title: job.title, company: job.company,
-      companyDesc: job.companyDesc, desc: job.desc, tags: job.tags,
-      location: job.location, seniority: job.seniority, stage: job.stage,
-      score: score, pct: pct, reason: reasons[0]
-    };
-  });
-
-  scored.sort(function(a, b) { return b.score - a.score; });
-  return scored.slice(0, 4);
-}
-
-function renderMatches(matches) {
-  var container = document.getElementById('matchResults');
   var html = '';
-  for (var i = 0; i < matches.length; i++) {
-    var m = matches[i];
-    var tagsHtml = '';
-    for (var j = 0; j < m.tags.length; j++) {
-      tagsHtml += '<span class="match-tag">' + m.tags[j] + '</span>';
-    }
-    var subtitle = m.companyDesc || m.desc;
-    var locationHtml = m.location ? ' · ' + m.location : '';
-    html += '<div class="match-card" style="animation: fadeUp 0.4s ease both ' + (0.1 + i * 0.08) + 's;">'
-      + '<div class="match-header"><div>'
-      + '<div class="match-title">' + m.title + '</div>'
-      + '<div class="match-company"><strong>' + m.company + '</strong> — ' + subtitle + locationHtml + '</div>'
-      + '</div><div class="match-score">' + m.pct + '% match</div></div>'
-      + '<div class="match-reason"><div class="match-reason-label">Why we think you\'re a fit</div>'
-      + '<div class="match-reason-text">' + m.reason + '</div></div>'
-      + '<div class="match-tags">' + tagsHtml + '</div>'
-      + '<a href="job.html?id=' + (m.id || '') + '" class="match-apply">View role <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>'
-      + '</div>';
+  jobs.forEach(function(job, i) {
+    var cat = (job.category || 'default').toLowerCase();
+    var avatarColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS['default'];
+    var initial = (job.company || '?')[0].toUpperCase();
+    var detail = job.companyDesc ? job.companyDesc : (job.desc ? job.desc.substring(0, 100) + '...' : '');
+    var delay = Math.min(i * 0.03, 0.32);
+
+    html += '<a href="job.html?id=' + job.id + '" class="talent-card" data-category="' + cat + '" style="animation-delay:' + delay + 's;">';
+    html += '<div class="card-avatar" style="background:' + avatarColor + ';">' + initial + '</div>';
+    html += '<div class="card-body">';
+    html += '<div class="card-name">' + escHtml(job.title) + '</div>';
+    html += '<div class="card-detail"><strong>' + escHtml(job.company) + '</strong>';
+    if (detail) html += ' &mdash; ' + escHtml(detail);
+    html += '</div>';
+    html += '<div class="card-tags">';
+    html += renderTagsHtml(job.aiDomain, 'highlight');
+    html += renderTagsHtml(job.department, '');
+    html += renderTagsHtml(job.industry, '');
+    html += renderTagsHtml(job.location, '');
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="card-actions">';
+    html += '<span class="card-external"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>';
+    html += '</div>';
+    html += '</a>';
+  });
+
+  list.innerHTML = html;
+}
+
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ============================================================
+// Multi-select dropdown logic
+// ============================================================
+function toggleMenu(triggerBtn) {
+  var menu = triggerBtn.nextElementSibling;
+  var wasOpen = menu.classList.contains('open');
+
+  // Close all open menus first
+  closeAllMenus();
+
+  if (!wasOpen) {
+    menu.classList.add('open');
+    triggerBtn.classList.add('active');
   }
-  container.innerHTML = html;
 }
 
-function refineMatches() {
-  var interest = document.getElementById('interestText').value.trim();
-  if (!interest) return;
-  profileData.notes = interest;
-  var matches = generateMatches(profileData);
-  renderMatches(matches);
-  updateSheetEntry(profileData);
-  document.getElementById('matchResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+function closeAllMenus() {
+  document.querySelectorAll('.ms-menu.open').forEach(function(m) { m.classList.remove('open'); });
+  document.querySelectorAll('.ms-trigger.active').forEach(function(t) { t.classList.remove('active'); });
+}
+
+// Close menus when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.ms-dropdown')) {
+    closeAllMenus();
+  }
+});
+
+function toggleOption(optEl) {
+  optEl.classList.toggle('selected');
+  updateTriggerLabel(optEl.closest('.ms-dropdown'));
+  applyFilters();
+}
+
+function updateTriggerLabel(dropdown) {
+  var selected = dropdown.querySelectorAll('.ms-option.selected');
+  var trigger = dropdown.querySelector('.ms-trigger');
+  if (selected.length === 0) {
+    trigger.textContent = 'All';
+    trigger.classList.remove('has-selection');
+  } else if (selected.length === 1) {
+    trigger.textContent = selected[0].getAttribute('data-value');
+    trigger.classList.add('has-selection');
+  } else {
+    trigger.textContent = selected.length + ' selected';
+    trigger.classList.add('has-selection');
+  }
+}
+
+function getSelectedValues(dropdownId) {
+  var dropdown = document.getElementById(dropdownId);
+  if (!dropdown) return [];
+  var selected = dropdown.querySelectorAll('.ms-option.selected');
+  var values = [];
+  selected.forEach(function(opt) { values.push(opt.getAttribute('data-value')); });
+  return values;
+}
+
+function clearAllFilters() {
+  // Clear search
+  document.querySelector('.search-input').value = '';
+  // Clear all multi-select selections
+  document.querySelectorAll('.ms-option.selected').forEach(function(opt) {
+    opt.classList.remove('selected');
+  });
+  // Reset all trigger labels
+  document.querySelectorAll('.ms-dropdown').forEach(function(dd) {
+    updateTriggerLabel(dd);
+  });
+  applyFilters();
 }
 
 // ============================================================
-// AIRTABLE LEAD CAPTURE
+// Search & Filter (OR logic for multi-select)
 // ============================================================
-var leadRecordId = null; // track current lead's Airtable record ID
+function matchesFilter(jobFieldValues, selectedValues) {
+  // No filter selected = match all
+  if (selectedValues.length === 0) return true;
+  // OR logic: job matches if ANY of its values is in the selected set
+  var jobVals = toArray(jobFieldValues);
+  for (var i = 0; i < jobVals.length; i++) {
+    if (selectedValues.indexOf(jobVals[i]) !== -1) return true;
+  }
+  return false;
+}
 
-// Look up an existing lead by LinkedIn URL
-function lookupLead(linkedinUrl, callback) {
-  var filter = encodeURIComponent("{LinkedIn URL}='" + linkedinUrl.replace(/'/g, "\\'") + "'");
-  proxyFetch(airtableLeadsUrl('?filterByFormula=' + filter + '&maxRecords=1'))
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.records && data.records.length > 0) {
-      var rec = data.records[0];
-      leadRecordId = rec.id;
-      var f = rec.fields;
-      callback({
-        name: f['Name'] || '',
-        email: f['Email'] || '',
-        role: f['Current Role'] || '',
-        details: f['Details'] || ''
-      });
-    } else {
-      leadRecordId = null;
-      callback(null);
+function applyFilters() {
+  var query = (document.querySelector('.search-input').value || '').toLowerCase().trim();
+  var locFilter = getSelectedValues('filterLocation');
+  var stageFilter = getSelectedValues('filterStage');
+  var aiFilter = getSelectedValues('filterAIDomain');
+  var senFilter = getSelectedValues('filterSeniority');
+  var indFilter = getSelectedValues('filterIndustry');
+  var deptFilter = getSelectedValues('filterDepartment');
+
+  var filtered = allJobs.filter(function(job) {
+    // Text search
+    if (query) {
+      var parts = [job.title, job.company, job.companyDesc, job.desc]
+        .concat(toArray(job.department), toArray(job.location), toArray(job.aiDomain), toArray(job.industry))
+        .concat(job.tags, job.keywords);
+      var haystack = parts.join(' ').toLowerCase();
+      if (haystack.indexOf(query) === -1) return false;
     }
-  })
-  .catch(function() { callback(null); });
+    // Multi-select filters with OR logic
+    if (!matchesFilter(job.location, locFilter)) return false;
+    if (!matchesFilter(job.stage, stageFilter)) return false;
+    if (!matchesFilter(job.aiDomain, aiFilter)) return false;
+    if (!matchesFilter(job.seniority, senFilter)) return false;
+    if (!matchesFilter(job.industry, indFilter)) return false;
+    if (!matchesFilter(job.department, deptFilter)) return false;
+    return true;
+  });
+
+  renderJobs(filtered);
 }
 
-// Create a new lead record (step 1 — LinkedIn URL + parsed name)
-function createLead(data, callback) {
+// Wire up search input
+document.querySelector('.search-input').addEventListener('input', applyFilters);
+
+// ============================================================
+// UI Helpers
+// ============================================================
+function toggleFilters() {
+  var panel = document.getElementById('expandedFilters');
+  var btn = document.querySelector('.more-filters-btn');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function openProfileModal() {
+  document.getElementById('profileModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfileModal() {
+  document.getElementById('profileModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.getElementById('profileModal').addEventListener('click', function(e) {
+  if (e.target === this) closeProfileModal();
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeProfileModal();
+});
+
+// ============================================================
+// Profile modal submit → Airtable Lead Capture
+// ============================================================
+document.querySelector('.modal-submit').addEventListener('click', function() {
+  var inputs = document.querySelectorAll('.modal-input');
+  var textarea = document.querySelector('.modal-textarea');
+  var name = inputs[0].value.trim();
+  var email = inputs[1].value.trim();
+  var linkedin = inputs[2].value.trim();
+  var note = textarea.value.trim();
+
+  if (!name || !email || !linkedin) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  var btn = document.querySelector('.modal-submit');
+  btn.textContent = 'SUBMITTING...';
+  btn.disabled = true;
+
+  // Submit to Airtable Lead Capture
   proxyFetch(airtableLeadsUrl(), {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       fields: {
-        'LinkedIn URL': data.linkedinUrl || '',
-        'Name': data.name || '',
+        'Name': name,
+        'Email': email,
+        'LinkedIn URL': linkedin,
+        'Details': note || '',
         'Date Added': new Date().toISOString()
       }
     })
   })
   .then(function(r) { return r.json(); })
-  .then(function(rec) {
-    if (rec.id) leadRecordId = rec.id;
-    if (callback) callback();
+  .then(function(data) {
+    if (data.error) throw new Error(data.error.message);
+    btn.textContent = 'PROFILE SUBMITTED';
+    btn.style.background = '#059669';
+    setTimeout(function() { closeProfileModal(); }, 1500);
   })
   .catch(function() {
-    if (callback) callback();
+    btn.textContent = 'SUBMIT PROFILE';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
   });
-}
-
-// Update the existing lead record with full profile data (step 2 onward)
-function updateLead(data) {
-  if (!leadRecordId) return;
-  var fields = {
-    'Name': data.name || '',
-    'Email': data.email || '',
-    'Current Role': data.role || '',
-    'Details': data.notes || ''
-  };
-  proxyFetch(airtableLeadsUrl('/' + leadRecordId), {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ fields: fields })
-  }).catch(function() {});
-}
-
-function updateSheetEntry(data) {
-  updateLead(data);
-}
-
-// ============================================================
-// BACK NAVIGATION
-// ============================================================
-function goBackToStep1() {
-  document.getElementById('step2').classList.remove('active');
-  document.getElementById('step1').classList.add('active');
-  document.getElementById('dot1').className = 'progress-dot active';
-  document.getElementById('line1').className = 'progress-line';
-  document.getElementById('dot2').className = 'progress-dot';
-  document.getElementById('linkedinBtn').disabled = false;
-  document.getElementById('linkedinBtn').textContent = 'CONTINUE';
-  hideError();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goBackToStep2() {
-  document.getElementById('step3').classList.remove('active');
-  document.getElementById('step2').classList.add('active');
-  document.getElementById('dot2').className = 'progress-dot active';
-  document.getElementById('line2').className = 'progress-line';
-  document.getElementById('dot3').className = 'progress-dot';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ============================================================
-// EVENT LISTENERS
-// ============================================================
-document.getElementById('linkedinUrl').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') submitLinkedIn();
 });
 
-document.getElementById('linkedinUrl').addEventListener('input', function() {
+// ============================================================
+// Sidebar newsletter signup → Airtable Lead Capture
+// ============================================================
+var sidebarLeadRecordId = null;
+
+document.querySelector('.sidebar-btn').addEventListener('click', function() {
+  var nameInput = document.querySelector('.sidebar-input[type="text"]');
+  var emailInput = document.querySelector('.sidebar-input[type="email"]');
+  var name = nameInput.value.trim();
+  var email = emailInput.value.trim();
+
+  if (!email) {
+    alert('Please enter your email.');
+    return;
+  }
+
+  var btn = document.querySelector('.sidebar-btn');
+  btn.textContent = 'SUBSCRIBING...';
+  btn.disabled = true;
+
+  proxyFetch(airtableLeadsUrl(), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fields: {
+        'Name': name || '',
+        'Email': email,
+        'Details': 'Newsletter subscriber',
+        'Date Added': new Date().toISOString()
+      }
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.error) throw new Error(data.error.message);
+    sidebarLeadRecordId = data.id || null;
+    btn.textContent = "YOU'RE IN!";
+    btn.style.background = '#059669';
+    nameInput.value = '';
+    emailInput.value = '';
+    // Show LinkedIn follow-up
+    document.getElementById('linkedinFollowup').classList.add('active');
+  })
+  .catch(function() {
+    btn.textContent = "I'M IN";
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  });
+});
+
+// ============================================================
+// Sidebar LinkedIn follow-up
+// ============================================================
+document.getElementById('sidebarLinkedinBtn').addEventListener('click', function() {
+  var input = document.getElementById('sidebarLinkedin');
+  var url = input.value.trim();
+
+  if (!url || url.indexOf('linkedin.com/in/') === -1) {
+    input.style.borderColor = 'var(--error)';
+    return;
+  }
+  input.style.borderColor = '';
+
+  var btn = document.getElementById('sidebarLinkedinBtn');
+  btn.textContent = 'SAVING...';
+  btn.disabled = true;
+
+  if (sidebarLeadRecordId) {
+    // Update the record we just created with the LinkedIn URL
+    proxyFetch(airtableLeadsUrl('/' + sidebarLeadRecordId), {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: { 'LinkedIn URL': url }
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      btn.textContent = 'SAVED!';
+      btn.style.background = '#059669';
+      input.disabled = true;
+    })
+    .catch(function() {
+      btn.textContent = 'SUBMIT';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
+  }
+});
+
+document.getElementById('sidebarLinkedinSkip').addEventListener('click', function() {
+  document.getElementById('linkedinFollowup').classList.remove('active');
+});
+
+document.getElementById('sidebarLinkedin').addEventListener('input', function() {
   this.style.borderColor = '';
 });
 
-['fieldName', 'fieldEmail', 'fieldRole'].forEach(function(id) {
-  document.getElementById(id).addEventListener('input', function() {
-    this.style.borderColor = '';
-  });
-});
+// ============================================================
+// Load on page start: fetch metadata (for filters) + jobs in parallel
+// ============================================================
+fetchJobs();
 </script>
 
 </body>
