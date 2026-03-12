@@ -16,6 +16,8 @@ const AIRTABLE_CONTENT_BASE = 'https://content.airtable.com';
 
 // Only allow requests from your own site
 const ALLOWED_ORIGINS = [
+  'https://buildanaistartup.com',
+  'https://www.buildanaistartup.com',
   'https://cmoro1.github.io',
   'http://localhost',
   'http://127.0.0.1',
