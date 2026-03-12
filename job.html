@@ -178,6 +178,7 @@ var PROXY_URL = 'https://frontier-proxy.christinamoro3.workers.dev';
 var AIRTABLE_BASE_ID = 'appP3T62XSwUvnCZk';
 var AIRTABLE_JOBS_TABLE = 'Job%20Listings';
 var AIRTABLE_CV_TABLE = 'CV%20Applications';
+var AIRTABLE_CV_FIELD_ID = 'fld4StqJN0UrmysWd'; // CV File attachment field ID
 
 // Proxy helper — routes Airtable API calls through Cloudflare Worker
 function proxyFetch(airtablePath, options) {
@@ -186,6 +187,16 @@ function proxyFetch(airtablePath, options) {
   headers['X-Airtable-Path'] = airtablePath;
   options.headers = headers;
   return fetch(PROXY_URL + '/proxy', options);
+}
+
+// Content proxy helper — routes to content.airtable.com through Worker
+function contentProxyFetch(contentPath, options) {
+  options = options || {};
+  var headers = options.headers || {};
+  headers['X-Airtable-Content-Path'] = contentPath;
+  headers['Content-Type'] = 'application/json';
+  options.headers = headers;
+  return fetch(PROXY_URL + '/content-proxy', options);
 }
 
 var currentJob = null;
@@ -357,60 +368,79 @@ function submitApplication() {
 
   var cvFile = cvInput.files[0];
 
-  // Step 1: Upload CV file to Cloudflare Worker (stored in KV, returns a public URL)
-  btn.textContent = 'UPLOADING CV...';
-  var formData = new FormData();
-  formData.append('file', cvFile);
+  // Step 1: Create the Airtable record (without file)
+  var fields = {
+    'Applicant Name': name,
+    'Email': email,
+    'Current Role': role,
+    'Other Info': coverNote,
+    'Date Applied': new Date().toISOString().split('T')[0]
+  };
 
-  fetch(PROXY_URL + '/upload', {
+  if (linkedin) fields['LinkedIn URL'] = linkedin;
+
+  if (currentJob && currentJob.id) {
+    fields['Job Applied For'] = [currentJob.id];
+  }
+
+  proxyFetch('/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_CV_TABLE, {
     method: 'POST',
-    body: formData
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: fields })
   })
   .then(function(r) { return r.json(); })
-  .then(function(uploadResult) {
-    if (uploadResult.error) {
+  .then(function(data) {
+    if (data.error) {
       btn.disabled = false;
       btn.textContent = 'SUBMIT APPLICATION';
-      showMsg('error', 'Failed to upload CV: ' + uploadResult.error + '. Please try again.');
+      showMsg('error', 'Something went wrong: ' + (data.error.message || 'Unknown error') + '. Please try again.');
       return;
     }
 
-    // Step 2: Create the Airtable record with the file URL in the attachment field
-    btn.textContent = 'SUBMITTING...';
-    var fields = {
-      'Applicant Name': name,
-      'Email': email,
-      'Current Role': role,
-      'Other Info': coverNote,
-      'Date Applied': new Date().toISOString().split('T')[0],
-      'CV File': [{ url: uploadResult.url, filename: uploadResult.filename }]
-    };
+    var recordId = data.id;
 
-    if (linkedin) fields['LinkedIn URL'] = linkedin;
+    // Step 2: Read the CV file as base64 and upload via Airtable Content API
+    if (cvFile && recordId) {
+      btn.textContent = 'UPLOADING CV...';
+      var reader = new FileReader();
+      reader.onload = function() {
+        // reader.result is a data URL like "data:application/pdf;base64,XXXX..."
+        var base64 = reader.result.split(',')[1];
 
-    if (currentJob && currentJob.id) {
-      fields['Job Applied For'] = [currentJob.id];
-    }
-
-    return proxyFetch('/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_CV_TABLE, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fields: fields })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.error) {
-        btn.disabled = false;
-        btn.textContent = 'SUBMIT APPLICATION';
-        showMsg('error', 'Something went wrong: ' + (data.error.message || 'Unknown error') + '. Please try again.');
-        return;
-      }
-
+        var uploadPath = '/v0/' + AIRTABLE_BASE_ID + '/' + recordId + '/' + AIRTABLE_CV_FIELD_ID + '/uploadAttachment';
+        contentProxyFetch(uploadPath, {
+          method: 'POST',
+          body: JSON.stringify({
+            contentType: cvFile.type || 'application/pdf',
+            file: base64,
+            filename: cvFile.name
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(uploadData) {
+          btn.disabled = false;
+          btn.textContent = 'SUBMIT APPLICATION';
+          if (uploadData.error) {
+            showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. (Note: CV may not have attached — please email it if needed.)');
+          } else {
+            showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon.');
+          }
+          btn.style.display = 'none';
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = 'SUBMIT APPLICATION';
+          showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. (Note: CV may not have attached — please email it if needed.)');
+          btn.style.display = 'none';
+        });
+      };
+      reader.readAsDataURL(cvFile);
+    } else {
       btn.disabled = false;
       btn.textContent = 'SUBMIT APPLICATION';
       showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon.');
       btn.style.display = 'none';
-    });
+    }
   })
   .catch(function() {
     btn.disabled = false;

@@ -1,4 +1,4 @@
-// Cloudflare Worker — Airtable API Proxy + File Upload for Mila Ventures
+// Cloudflare Worker — Airtable API Proxy for Mila Ventures
 // Keeps the Airtable API key server-side so it's never exposed in client code.
 //
 // SETUP:
@@ -9,13 +9,10 @@
 //    - Name: AIRTABLE_API_KEY
 //    - Value: your Airtable personal access token
 //    - Click "Encrypt"
-// 5. Go to Workers & Pages → KV → Create a namespace called "FILE_STORE"
-// 6. Go back to your Worker → Settings → Bindings → Add → KV Namespace
-//    - Variable name: FILE_STORE
-//    - KV namespace: FILE_STORE (the one you just created)
-// 7. Note your worker URL (e.g. https://mila-proxy.YOUR-SUBDOMAIN.workers.dev)
+// 5. Note your worker URL (e.g. https://mila-proxy.YOUR-SUBDOMAIN.workers.dev)
 
-const AIRTABLE_BASE = 'https://api.airtable.com';
+const AIRTABLE_API_BASE = 'https://api.airtable.com';
+const AIRTABLE_CONTENT_BASE = 'https://content.airtable.com';
 
 // Only allow requests from your own site
 const ALLOWED_ORIGINS = [
@@ -31,7 +28,7 @@ function getCorsHeaders(request) {
   return {
     'Access-Control-Allow-Origin': allowed ? origin : ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, X-Airtable-Path',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Airtable-Path, X-Airtable-Content-Path',
     'Access-Control-Max-Age': '86400',
   };
 }
@@ -45,60 +42,51 @@ export default {
       return new Response(null, { status: 204, headers: getCorsHeaders(request) });
     }
 
-    // ─── FILE UPLOAD: POST /upload ───
-    // Accepts a file via FormData, stores in KV, returns a public URL
-    if (url.pathname === '/upload' && request.method === 'POST') {
-      try {
-        const formData = await request.formData();
-        const file = formData.get('file');
-        if (!file) {
-          return new Response(JSON.stringify({ error: 'No file provided' }), {
-            status: 400,
-            headers: { ...getCorsHeaders(request), 'Content-Type': 'application/json' }
-          });
-        }
-
-        const id = crypto.randomUUID();
-        const arrayBuffer = await file.arrayBuffer();
-
-        // Store in KV with 1-hour expiration (plenty of time for Airtable to fetch)
-        await env.FILE_STORE.put(id, arrayBuffer, {
-          expirationTtl: 3600,
-          metadata: { contentType: file.type || 'application/octet-stream', filename: file.name }
-        });
-
-        const fileUrl = url.origin + '/files/' + id;
-        return new Response(JSON.stringify({ url: fileUrl, filename: file.name }), {
+    // ─── AIRTABLE CONTENT API PROXY: /content-proxy ───
+    // For uploading attachments via content.airtable.com
+    // Client sends the path in X-Airtable-Content-Path header
+    if (url.pathname === '/content-proxy') {
+      const contentPath = request.headers.get('X-Airtable-Content-Path');
+      if (!contentPath) {
+        return new Response(JSON.stringify({ error: 'Missing X-Airtable-Content-Path header' }), {
+          status: 400,
           headers: { ...getCorsHeaders(request), 'Content-Type': 'application/json' }
+        });
+      }
+
+      const targetUrl = AIRTABLE_CONTENT_BASE + contentPath;
+
+      const proxyHeaders = new Headers();
+      proxyHeaders.set('Authorization', 'Bearer ' + env.AIRTABLE_API_KEY);
+      proxyHeaders.set('Content-Type', 'application/json');
+
+      const proxyInit = {
+        method: request.method,
+        headers: proxyHeaders,
+      };
+
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        proxyInit.body = request.body;
+      }
+
+      try {
+        const response = await fetch(targetUrl, proxyInit);
+        const responseHeaders = new Headers(getCorsHeaders(request));
+        responseHeaders.set('Content-Type', response.headers.get('Content-Type') || 'application/json');
+
+        return new Response(response.body, {
+          status: response.status,
+          headers: responseHeaders,
         });
       } catch (err) {
-        return new Response(JSON.stringify({ error: 'Upload failed: ' + err.message }), {
-          status: 500,
+        return new Response(JSON.stringify({ error: 'Content proxy error: ' + err.message }), {
+          status: 502,
           headers: { ...getCorsHeaders(request), 'Content-Type': 'application/json' }
         });
       }
     }
 
-    // ─── FILE SERVE: GET /files/:id ───
-    // Serves a previously uploaded file from KV (Airtable fetches from this URL)
-    if (url.pathname.startsWith('/files/') && request.method === 'GET') {
-      const id = url.pathname.slice('/files/'.length);
-      const { value, metadata } = await env.FILE_STORE.getWithMetadata(id, { type: 'arrayBuffer' });
-
-      if (!value) {
-        return new Response('File not found or expired', { status: 404 });
-      }
-
-      return new Response(value, {
-        headers: {
-          'Content-Type': metadata?.contentType || 'application/octet-stream',
-          'Content-Disposition': 'inline; filename="' + (metadata?.filename || 'file') + '"',
-          'Access-Control-Allow-Origin': '*',
-        }
-      });
-    }
-
-    // ─── AIRTABLE PROXY: /proxy ───
+    // ─── AIRTABLE API PROXY: /proxy ───
     // The client sends the Airtable path in the X-Airtable-Path header
     if (url.pathname === '/proxy') {
       const airtablePath = request.headers.get('X-Airtable-Path');
@@ -109,13 +97,11 @@ export default {
         });
       }
 
-      const targetUrl = AIRTABLE_BASE + airtablePath;
+      const targetUrl = AIRTABLE_API_BASE + airtablePath;
 
-      // Build proxied request
       const proxyHeaders = new Headers();
       proxyHeaders.set('Authorization', 'Bearer ' + env.AIRTABLE_API_KEY);
 
-      // Forward Content-Type
       const contentType = request.headers.get('Content-Type');
       if (contentType) {
         proxyHeaders.set('Content-Type', contentType);
@@ -126,7 +112,6 @@ export default {
         headers: proxyHeaders,
       };
 
-      // Forward body for non-GET requests
       if (request.method !== 'GET' && request.method !== 'HEAD') {
         proxyInit.body = request.body;
       }
