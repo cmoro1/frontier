@@ -355,85 +355,73 @@ function submitApplication() {
   btn.textContent = 'SUBMITTING...';
   hideMessages();
 
-  // First, upload CV to a temporary URL via Airtable's direct upload approach
-  // Since Airtable attachment fields require a URL, we'll use a two-step process:
-  // 1. Create the record with text fields
-  // 2. Note: For CV file upload, Airtable requires files to be hosted at a URL.
-  //    We'll use the Airtable upload endpoint.
+  var cvFile = cvInput.files[0];
 
-  // Step 1: Upload file to get a URL
-  uploadFileToAirtable(cvInput.files[0], function(uploadResult) {
-    // Step 2: Create the CV Applications record
-    var fields = {
-      'Applicant Name': name,
-      'Email': email,
-      'Current Role': role,
-      'Other Info': coverNote,
-      'Date Applied': new Date().toISOString().split('T')[0]
-    };
+  // Step 1: Create the CV Applications record (without file)
+  var fields = {
+    'Applicant Name': name,
+    'Email': email,
+    'Current Role': role,
+    'Other Info': coverNote,
+    'Date Applied': new Date().toISOString().split('T')[0]
+  };
 
-    if (linkedin) fields['LinkedIn URL'] = linkedin;
+  if (linkedin) fields['LinkedIn URL'] = linkedin;
 
-    // Link to the job
-    if (currentJob && currentJob.id) {
-      fields['Job Applied For'] = [currentJob.id];
-    }
+  if (currentJob && currentJob.id) {
+    fields['Job Applied For'] = [currentJob.id];
+  }
 
-    // Attach CV if upload succeeded
-    if (uploadResult && uploadResult.url) {
-      fields['CV File'] = [{ url: uploadResult.url, filename: cvInput.files[0].name }];
-    }
-
-    proxyFetch('/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_CV_TABLE, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ fields: fields })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      btn.disabled = false;
-      btn.textContent = 'SUBMIT APPLICATION';
-      if (data.error) {
-        showMsg('error', 'Something went wrong: ' + (data.error.message || 'Unknown error') + '. Please try again.');
-      } else {
-        showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon.');
-        // Disable form
-        btn.style.display = 'none';
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'SUBMIT APPLICATION';
-      showMsg('error', 'Failed to submit. Please check your connection and try again.');
-    });
-  });
-}
-
-function uploadFileToAirtable(file, callback) {
-  // Airtable supports uploading via their upload attachment endpoint
-  var path = '/v0/' + AIRTABLE_BASE_ID + '/uploadAttachment';
-
-  var formData = new FormData();
-  formData.append('file', file);
-
-  proxyFetch(path, {
+  proxyFetch('/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_CV_TABLE, {
     method: 'POST',
-    body: formData
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: fields })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    if (data && data.url) {
-      callback({ url: data.url });
+    if (data.error) {
+      btn.disabled = false;
+      btn.textContent = 'SUBMIT APPLICATION';
+      showMsg('error', 'Something went wrong: ' + (data.error.message || 'Unknown error') + '. Please try again.');
+      return;
+    }
+
+    var recordId = data.id;
+
+    // Step 2: Upload CV file to the record's attachment field
+    if (cvFile && recordId) {
+      var uploadPath = '/v0/' + AIRTABLE_BASE_ID + '/' + recordId + '/CV%20File/uploadAttachment';
+      var formData = new FormData();
+      formData.append('file', cvFile);
+
+      proxyFetch(uploadPath, {
+        method: 'POST',
+        body: formData
+      })
+      .then(function() {
+        btn.disabled = false;
+        btn.textContent = 'SUBMIT APPLICATION';
+        showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon.');
+        btn.style.display = 'none';
+      })
+      .catch(function() {
+        // Record was created even if file upload failed
+        btn.disabled = false;
+        btn.textContent = 'SUBMIT APPLICATION';
+        showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon. (Note: CV file may not have attached — please email it to us if needed.)');
+        btn.style.display = 'none';
+      });
     } else {
-      // Fallback: submit without file attachment
-      callback(null);
+      btn.disabled = false;
+      btn.textContent = 'SUBMIT APPLICATION';
+      showMsg('success', '<strong>Application submitted!</strong> We\'ve received your application for ' + (currentJob ? currentJob.title : 'this role') + '. We\'ll be in touch soon.');
+      btn.style.display = 'none';
     }
   })
   .catch(function() {
-    // Fallback: submit without file attachment
-    callback(null);
+    btn.disabled = false;
+    btn.textContent = 'SUBMIT APPLICATION';
+    showMsg('error', 'Failed to submit. Please check your connection and try again.');
   });
 }
 

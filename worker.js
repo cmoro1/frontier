@@ -59,9 +59,16 @@ export default {
     const proxyHeaders = new Headers();
     proxyHeaders.set('Authorization', 'Bearer ' + env.AIRTABLE_API_KEY);
 
+    // Forward Content-Type (important: for multipart/form-data this includes the boundary)
     const contentType = request.headers.get('Content-Type');
     if (contentType) {
       proxyHeaders.set('Content-Type', contentType);
+    }
+
+    // For file uploads, also forward Content-Length if present
+    const contentLength = request.headers.get('Content-Length');
+    if (contentLength && isUpload) {
+      proxyHeaders.set('Content-Length', contentLength);
     }
 
     const proxyInit = {
