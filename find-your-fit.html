@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Fit — Mila Ventures</title>
+<meta name="description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio. Paste your LinkedIn and get matched with opportunities that fit your experience.">
+<meta property="og:title" content="Find Your Fit — Mila Ventures">
+<meta property="og:description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Find Your Fit — Mila Ventures">
+<meta name="twitter:description" content="Discover your ideal role across Mila Ventures' AI-focused portfolio.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><path d='M6 28V10l4.5 6.5L18 6l7.5 10.5L30 10v18' stroke='%236d28d9' stroke-width='2' fill='none'/><circle cx='18' cy='6' r='2' fill='%23a78bfa'/></svg>" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-page: #f3eff8;
+  --bg-card: #ffffff;
+  --accent: #a78bfa;
+  --accent-dark: #6d28d9;
+  --accent-deeper: #4c1d95;
+  --accent-light: #c4b5fd;
+  --accent-bg: #ece5fb;
+  --text-dark: #1a1230;
+  --text-secondary: #4a3d6b;
+  --text-muted: #8878a9;
+  --border-light: #e0d8ed;
+  --border-lighter: #ece5f5;
+  --success: #059669;
+  --success-bg: rgba(16,185,129,0.06);
+  --success-border: rgba(16,185,129,0.25);
+  --error: #dc2626;
+  --error-bg: rgba(220,38,38,0.06);
+  --error-border: rgba(220,38,38,0.2);
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== NAV ========== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 64px;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border-lighter);
+}
+
+.logo-lockup { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-back:hover { color: var(--accent-dark); }
+
+.nav-back svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.page-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 32px 120px;
+}
+
+/* ========== STEP HEADER ========== */
+.step-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.step-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.step-title em {
+  font-style: italic;
+  color: var(--accent-dark);
+  font-weight: 300;
+}
+
+.step-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ========== CARDS ========== */
+.card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 32px;
+  border: 1px solid var(--border-lighter);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+/* ========== LINKEDIN STEP ========== */
+.linkedin-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.linkedin-input {
+  flex: 1;
+  padding: 16px 20px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.linkedin-input::placeholder { color: var(--text-muted); }
+.linkedin-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.linkedin-submit {
+  padding: 16px 28px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.linkedin-submit:hover {
+  background: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
+}
+
+.linkedin-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.linkedin-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  font-weight: 300;
+}
+
+/* ========== STATUS MESSAGES ========== */
+.status-msg {
+  display: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
+.status-msg.active { display: block; }
+
+.status-msg.error {
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error);
+}
+
+/* ========== PROFILE FORM (Step 2) ========== */
+.step-section {
+  display: none;
+}
+
+.step-section.active {
+  display: block;
+  animation: fadeUp 0.5s ease both;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-field label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.form-field label .req { color: var(--accent-dark); }
+.form-field label .opt { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-muted); }
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input::placeholder { color: var(--text-muted); }
+.form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.form-input:read-only {
+  background: rgba(167,139,250,0.04);
+  color: var(--text-secondary);
+}
+
+.form-textarea {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-textarea::placeholder { color: var(--text-muted); }
+.form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.profile-manual-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.form-submit {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+
+.form-submit:hover {
+  background: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
+}
+
+/* ========== JOB MATCHES (Step 3) ========== */
+.matches-intro {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.match-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 24px 26px;
+  border: 1px solid var(--border-lighter);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.match-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 12px 0 0 12px;
+}
+
+.match-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.match-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.match-title {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+.match-company {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.match-company strong {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.match-score {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--accent-bg);
+  color: var(--accent-dark);
+  white-space: nowrap;
+}
+
+.match-reason {
+  background: var(--bg-page);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 14px;
+}
+
+.match-reason-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.match-reason-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.match-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.match-tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  background: var(--bg-page);
+}
+
+.match-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: var(--text-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.match-apply:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.match-apply svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* Interest refinement box */
+.interest-box {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 28px;
+  border: 1px solid var(--border-lighter);
+  margin-top: 32px;
+}
+
+.interest-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.interest-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.interest-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+
+.interest-submit:hover {
+  background: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-light);
+  transition: all 0.3s;
+}
+
+.progress-dot.active {
+  background: var(--accent-dark);
+  box-shadow: 0 0 0 4px rgba(109,40,217,0.12);
+}
+
+.progress-dot.done {
+  background: var(--success);
+}
+
+.progress-line {
+  width: 40px;
+  height: 2px;
+  background: var(--border-light);
+  transition: background 0.3s;
+}
+
+.progress-line.done {
+  background: var(--success);
+}
+
+/* ========== STEP BACK BUTTON ========== */
+.step-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.step-back:hover { color: var(--accent-dark); }
+
+.step-back svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-container { animation: fadeUp 0.5s ease both; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .page-container { padding: 40px 20px 80px; }
+  .card { padding: 24px 20px; }
+  .linkedin-input-group { flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <a href="talent-marketplace-v4-light-purple.html" class="logo-lockup">
+    <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 28V10l4.5 6.5L18 6l7.5 10.5L30 10v18" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="18" cy="6" r="1.6" fill="#a78bfa"/>
+      <line x1="6" y1="28" x2="8.5" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="27.5" y1="28" x2="30" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Mila Ventures</div>
+  </a>
+  <a href="talent-marketplace-v4-light-purple.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to all jobs
+  </a>
+</nav>
+
+<div class="page-container">
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-dot active" id="dot1"></div>
+    <div class="progress-line" id="line1"></div>
+    <div class="progress-dot" id="dot2"></div>
+    <div class="progress-line" id="line2"></div>
+    <div class="progress-dot" id="dot3"></div>
+  </div>
+
+  <!-- ========== STEP 1: LinkedIn URL ========== -->
+  <div class="step-section active" id="step1">
+    <div class="step-header">
+      <div class="step-label">Step 1 of 3</div>
+      <h1 class="step-title">Let's find your <em>fit</em></h1>
+      <p class="step-desc">Paste your LinkedIn profile URL and we'll match you with the most relevant roles across our portfolio.</p>
+    </div>
+
+    <div class="card">
+      <div class="linkedin-input-group">
+        <input type="url" class="linkedin-input" id="linkedinUrl" placeholder="https://linkedin.com/in/yourprofile" autocomplete="off">
+        <button class="linkedin-submit" id="linkedinBtn" onclick="submitLinkedIn()">Continue</button>
+      </div>
+      <p class="linkedin-hint">We'll use your profile link to get started, then you can fill in the rest.</p>
+
+      <!-- Status messages -->
+      <div class="status-msg error" id="errorMsg"></div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 2: Confirm / Fill Profile ========== -->
+  <div class="step-section" id="step2">
+    <button class="step-back" onclick="goBackToStep1()">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+    <div class="step-header">
+      <div class="step-label">Step 2 of 3</div>
+      <h1 class="step-title">Confirm your <em>details</em></h1>
+      <p class="step-desc" id="step2Desc">We pulled the following from your LinkedIn. Make sure everything looks right.</p>
+    </div>
+
+    <div class="card">
+      <p class="profile-manual-note" id="manualNote">
+        Please fill in your details below. All fields marked with * are required.
+      </p>
+
+      <div class="profile-form" id="profileForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Full name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="fieldName" placeholder="Your full name" required>
+          </div>
+          <div class="form-field">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" class="form-input" id="fieldEmail" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Current role <span class="req">*</span></label>
+          <input type="text" class="form-input" id="fieldRole" placeholder="e.g. Senior ML Engineer at Acme Corp" required>
+        </div>
+        <div class="form-field">
+          <label>LinkedIn URL</label>
+          <input type="url" class="form-input" id="fieldLinkedin" readonly>
+        </div>
+        <div class="form-field">
+          <label>Anything else you'd like us to know? <span class="opt">(optional)</span></label>
+          <textarea class="form-textarea" id="fieldNotes" placeholder="Skills you want to use, industries that excite you, preferred company stage..."></textarea>
+        </div>
+        <button type="button" class="form-submit" onclick="submitProfile()">Find my matches →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== STEP 3: Job Matches ========== -->
+  <div class="step-section" id="step3">
+    <button class="step-back" onclick="goBackToStep2()">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+    <div class="step-header">
+      <div class="step-label">Step 3 of 3</div>
+      <h1 class="step-title">Your <em>matches</em></h1>
+      <p class="step-desc">Based on your experience, here are the roles we think you'd thrive in.</p>
+    </div>
+
+    <div id="matchResults"></div>
+
+    <!-- Refine with interests -->
+    <div class="interest-box">
+      <div class="interest-title">Want better matches?</div>
+      <p class="interest-desc">Tell us more about what excites you and we'll refine your results.</p>
+      <textarea class="form-textarea" id="interestText" placeholder="e.g. I'm passionate about climate tech, love early-stage chaos, and want to lead an engineering team..."></textarea>
+      <button class="interest-submit" onclick="refineMatches()">Refine matches →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+// Airtable
+var PROXY_URL = 'https://frontier-proxy.christinamoro3.workers.dev';
+var AIRTABLE_BASE_ID = 'appP3T62XSwUvnCZk';
+var AIRTABLE_JOBS_TABLE = 'Job%20Listings';
+var AIRTABLE_LEADS_TABLE = 'Lead%20Capture';
+
+// Proxy helper — routes Airtable API calls through Cloudflare Worker
+function proxyFetch(airtablePath, options) {
+  options = options || {};
+  var headers = options.headers || {};
+  headers['X-Airtable-Path'] = airtablePath;
+  options.headers = headers;
+  return fetch(PROXY_URL + '/proxy', options);
+}
+
+function airtableLeadsUrl(extra) {
+  return '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_LEADS_TABLE + (extra || '');
+}
+
+// ============================================================
+// STATE
+// ============================================================
+var profileData = {
+  linkedinUrl: '',
+  name: '',
+  email: '',
+  role: '',
+  notes: ''
+};
+
+// ============================================================
+// JOBS — fetched from Airtable
+// ============================================================
+var allJobs = [];
+var jobsLoaded = false;
+
+function fetchJobsFromAirtable(callback) {
+  if (!AIRTABLE_BASE_ID) {
+    if (callback) callback([]);
+    return;
+  }
+  var path = '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_JOBS_TABLE
+    + '?filterByFormula=' + encodeURIComponent("{Status}='Open'");
+
+  proxyFetch(path)
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (!data.records) { if (callback) callback([]); return; }
+    allJobs = data.records.map(function(rec) {
+      var f = rec.fields;
+      var kwString = f['Keywords'] || '';
+      var kwArray = kwString.split(',').map(function(k) { return k.trim().toLowerCase(); }).filter(Boolean);
+      return {
+        id: rec.id,
+        title: f['Job Title'] || '',
+        company: f['Company'] || '',
+        companyDesc: f['Company Description (1-liner)'] || '',
+        companyUrl: f['Company Website URL'] || '',
+        desc: f['Job Description'] || '',
+        tags: f['Tags'] || [],
+        keywords: kwArray,
+        category: (f['Category'] || '').toLowerCase(),
+        status: f['Status'] || '',
+        datePosted: f['Date Posted'] || '',
+        location: f['Location'] || '',
+        seniority: f['Seniority'] || '',
+        stage: f['Stage'] || '',
+        aiDomain: f['AI Domain'] || '',
+        industry: f['Industry'] || '',
+        department: f['Department'] || ''
+      };
+    });
+    jobsLoaded = true;
+    if (callback) callback(allJobs);
+  })
+  .catch(function() {
+    if (callback) callback([]);
+  });
+}
+
+// Load jobs on page load
+fetchJobsFromAirtable();
+
+// ============================================================
+// PARSE NAME FROM LINKEDIN URL SLUG
+// ============================================================
+// Common first names used to split concatenated slugs like "julietopp" → "Julie Topp"
+var COMMON_FIRST_NAMES = [
+  'aaron','abby','adam','adrian','aidan','aiden','aleksander','aleksandra','alex','alexander','alexandra','alexis','alice','alicia','alison','allison','alyssa','amanda','amber','amy','ana','andrea','andrzej','andrew','angela','anna','anne','annie','anthony','antonio','ariana','arjun','ashley','audrey','austin',
+  'bailey','barbara','becky','ben','benjamin','beth','blake','brad','brandon','brenda','brian','brianna','brittany','brooke','bruce','bryan',
+  'caitlin','caleb','cameron','carl','carlos','carmen','carol','caroline','carter','casey','catherine','chad','charles','charlie','charlotte','chase','chelsea','cheryl','chris','christian','christina','christine','christopher','cindy','claire','clara','cole','colin','colleen','connor','courtney','craig','crystal','curtis','cynthia',
+  'dale','daniel','danielle','darren','dave','david','dawn','dean','debbie','deborah','debra','deepak','denis','denise','dennis','derek','diana','diane','dmitri','dominic','donna','doris','dorothy','doug','douglas','drew','dustin','dylan',
+  'eddie','edward','eileen','elaine','elena','eli','elijah','elizabeth','ella','ellen','emily','emma','eric','erica','erik','erin','ethan','eva','evan','evelyn',
+  'faith','felicia','fernando','francesca','francisco','frank','fred','frederick',
+  'gabriel','gail','garrett','gary','gavin','george','gerald','giovanni','gloria','grace','grant','greg','gregory','guillaume','gwen',
+  'hailey','hannah','harold','harry','hassan','heather','helen','henry','holly','howard','hunter',
+  'ian','igor','irene','isaac','isabel','isabella','ivan',
+  'jack','jackson','jacob','jacqueline','jade','jake','james','jamie','jane','janet','janice','jared','jasmine','jason','jay','jean','jeff','jeffrey','jen','jenna','jennifer','jenny','jeremy','jerry','jesse','jessica','jill','jim','jimmy','joan','joanna','jocelyn','joe','joel','john','jonathan','jordan','jorge','jose','joseph','josh','joshua','joyce','juan','judith','judy','julia','julian','julie','justin',
+  'kara','karen','kate','katherine','kathleen','kathryn','kathy','katie','kayla','keith','kelly','ken','kendra','kenneth','kevin','kim','kimberly','krista','kristen','kristin','kristina','kurt','kyle',
+  'lance','larry','laura','lauren','lawrence','leah','lee','leon','leonard','leslie','liam','lily','linda','lindsay','lindsey','lisa','logan','lori','louis','lucas','lucy','luis','luke','lynn',
+  'mackenzie','madeline','madison','maggie','mandy','marc','marco','marcus','margaret','maria','marie','marilyn','mario','mark','martha','martin','mary','mason','matt','matthew','maureen','max','megan','melissa','michael','michele','michelle','miguel','mike','mila','miranda','mitchell','mohammed','molly','monica','morgan','mustafa',
+  'nancy','natalie','natasha','nathan','nathaniel','neil','nicholas','nicole','nikita','nina','noah','noel','nora','norma',
+  'olivia','olga','omar','oscar','owen',
+  'paige','pamela','patricia','patrick','paul','paula','pavel','pedro','peggy','penny','peter','philip','phillip','philippe','phyllis','pierre','priya',
+  'quinn',
+  'rachel','rajesh','ralph','ramon','randall','randy','ravi','ray','raymond','rebecca','renee','rhonda','ricardo','richard','rick','rita','robert','roberto','robin','roger','ron','ronald','rosa','rose','ross','roxanne','roy','ruby','russell','ruth','ryan',
+  'sabrina','sally','sam','samantha','samuel','sandra','sandy','sanjay','sara','sarah','scott','sean','sergei','seth','shane','shannon','sharon','shawn','sheila','shelby','sherry','shirley','sierra','sophia','spencer','stacy','stefan','stephanie','stephen','steve','steven','stuart','sue','summer','sunil','susan','suzanne','sydney',
+  'tamara','tammy','tanya','tara','tatiana','taylor','teresa','terri','terry','theresa','thomas','tiffany','tim','timothy','tina','todd','tom','tommy','tomasz','tony','tracy','travis','trevor','tricia','troy','tyler',
+  'valerie','vanessa','vera','veronica','vicki','victoria','vincent','virginia','vivian','vladimir',
+  'walter','wanda','warren','wayne','wendy','wesley','whitney','william','willie','wojciech','wyatt',
+  'xavier','xin',
+  'yolanda','youssef','yvonne',
+  'zachary','zbigniew','zoe'
+];
+
+var firstNameSet = {};
+COMMON_FIRST_NAMES.forEach(function(n) { firstNameSet[n] = true; });
+
+function parseNameFromUrl(url) {
+  // Extract the slug from linkedin.com/in/some-slug, handle trailing slash
+  var match = url.match(/linkedin\.com\/in\/([^\/\?#]+)/i);
+  if (!match) return '';
+
+  var slug = decodeURIComponent(match[1]).toLowerCase().trim();
+
+  // Remove trailing numbers/hashes LinkedIn sometimes adds (e.g. "john-doe-a1b2c3" or "john-doe-123456789")
+  slug = slug.replace(/-[a-f0-9]{4,}$/i, '');
+  slug = slug.replace(/-\d{3,}$/i, '');
+
+  // If slug has hyphens/underscores/dots, split on those
+  if (/[-_.]/.test(slug)) {
+    var parts = slug.split(/[-_.]+/);
+    return parts.map(function(p) {
+      if (!p) return '';
+      return p.charAt(0).toUpperCase() + p.slice(1);
+    }).filter(function(p) { return p.length > 0; }).join(' ');
+  }
+
+  // No separators — try to split a concatenated slug like "julietopp" or "christinamoro"
+  // Try matching a known first name from the beginning
+  for (var len = Math.min(slug.length - 1, 12); len >= 2; len--) {
+    var candidate = slug.substring(0, len);
+    if (firstNameSet[candidate]) {
+      var remainder = slug.substring(len);
+      if (remainder.length >= 2) {
+        var firstName = candidate.charAt(0).toUpperCase() + candidate.slice(1);
+        var lastName = remainder.charAt(0).toUpperCase() + remainder.slice(1);
+        return firstName + ' ' + lastName;
+      }
+    }
+  }
+
+  // Fallback: just capitalize the whole slug as one name
+  return slug.charAt(0).toUpperCase() + slug.slice(1);
+}
+
+// ============================================================
+// STEP 1 — Submit LinkedIn URL
+// ============================================================
+function submitLinkedIn() {
+  var urlInput = document.getElementById('linkedinUrl');
+  var btn = document.getElementById('linkedinBtn');
+  var url = urlInput.value.trim();
+
+  // Validate
+  if (!url || url.indexOf('linkedin.com/in/') === -1) {
+    urlInput.style.borderColor = 'var(--error)';
+    showError('Please enter a valid LinkedIn profile URL (e.g. linkedin.com/in/yourname).');
+    return;
+  }
+  urlInput.style.borderColor = '';
+  hideError();
+
+  profileData.linkedinUrl = url;
+  profileData.name = parseNameFromUrl(url);
+
+  // Check Airtable Lead Capture for returning user, or create new lead
+  btn.disabled = true;
+  btn.textContent = 'Loading...';
+  lookupLead(url, function(existing) {
+    if (existing) {
+      // Returning user — populate from existing data
+      if (existing.name) profileData.name = existing.name;
+      if (existing.email) profileData.email = existing.email;
+      if (existing.role) profileData.role = existing.role;
+      if (existing.details) profileData.notes = existing.details;
+      btn.disabled = false;
+      btn.textContent = 'CONTINUE';
+      goToStep2();
+    } else {
+      // New user — create record immediately with LinkedIn URL + parsed name
+      createLead({ linkedinUrl: url, name: profileData.name }, function() {
+        btn.disabled = false;
+        btn.textContent = 'CONTINUE';
+        goToStep2();
+      });
+    }
+  });
+}
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+function hideError() {
+  document.getElementById('errorMsg').classList.remove('active');
+}
+
+function showError(html) {
+  document.getElementById('errorMsg').innerHTML = html;
+  document.getElementById('errorMsg').classList.add('active');
+}
+
+// ============================================================
+// STEP 2 — Fill in Profile
+// ============================================================
+function goToStep2() {
+  document.getElementById('dot1').className = 'progress-dot done';
+  document.getElementById('line1').className = 'progress-line done';
+  document.getElementById('dot2').className = 'progress-dot active';
+
+  document.getElementById('step1').classList.remove('active');
+  document.getElementById('step2').classList.add('active');
+
+  document.getElementById('fieldLinkedin').value = profileData.linkedinUrl;
+  document.getElementById('fieldName').value = profileData.name || '';
+  document.getElementById('fieldEmail').value = profileData.email || '';
+  document.getElementById('fieldRole').value = profileData.role || '';
+  document.getElementById('fieldNotes').value = profileData.notes || '';
+
+  var hasAllFields = profileData.name && profileData.email && profileData.role;
+
+  if (hasAllFields) {
+    document.getElementById('step2Desc').textContent = 'Welcome back, ' + profileData.name.split(' ')[0] + '! We filled in your info from last time. Update anything that\'s changed.';
+    document.getElementById('manualNote').textContent = 'Your details from your last visit are below. Update anything that\'s changed.';
+  } else if (profileData.name) {
+    document.getElementById('step2Desc').textContent = 'Hi ' + profileData.name.split(' ')[0] + '! Please confirm your name and fill in the rest.';
+    document.getElementById('manualNote').textContent = 'Please fill in your details below. All fields marked with * are required.';
+  } else {
+    document.getElementById('step2Desc').textContent = 'Please enter your details below so we can find your best matches.';
+    document.getElementById('manualNote').textContent = 'Please fill in your details below. All fields marked with * are required.';
+  }
+
+  // Focus first empty required field
+  var firstEmpty = !document.getElementById('fieldName').value ? 'fieldName' : 'fieldEmail';
+  setTimeout(function() { document.getElementById(firstEmpty).focus(); }, 100);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitProfile() {
+  var nameVal = document.getElementById('fieldName').value.trim();
+  var emailVal = document.getElementById('fieldEmail').value.trim();
+  var roleVal = document.getElementById('fieldRole').value.trim();
+
+  // Validate
+  var valid = true;
+  if (!nameVal) { document.getElementById('fieldName').style.borderColor = 'var(--error)'; valid = false; }
+  if (!emailVal) { document.getElementById('fieldEmail').style.borderColor = 'var(--error)'; valid = false; }
+  if (!roleVal) { document.getElementById('fieldRole').style.borderColor = 'var(--error)'; valid = false; }
+  if (!valid) return;
+
+  profileData.name = nameVal;
+  profileData.email = emailVal;
+  profileData.role = roleVal;
+  profileData.notes = document.getElementById('fieldNotes').value;
+
+  updateSheetEntry(profileData);
+  goToStep3();
+}
+
+// ============================================================
+// STEP 3 — Job Matches
+// ============================================================
+function goToStep3() {
+  document.getElementById('dot2').className = 'progress-dot done';
+  document.getElementById('line2').className = 'progress-line done';
+  document.getElementById('dot3').className = 'progress-dot active';
+
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('step3').classList.add('active');
+
+  if (jobsLoaded && allJobs.length > 0) {
+    var matches = generateMatches(profileData);
+    renderMatches(matches);
+  } else {
+    // Jobs haven't loaded yet — fetch and then render
+    document.getElementById('matchResults').innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:24px;">Loading job listings...</p>';
+    fetchJobsFromAirtable(function() {
+      var matches = generateMatches(profileData);
+      renderMatches(matches);
+    });
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function generateMatches(profile) {
+  var roleWords = (profile.role + ' ' + profile.notes).toLowerCase().split(/\s+/);
+
+  var scored = allJobs.map(function(job) {
+    var score = 0;
+    var reasons = [];
+
+    job.keywords.forEach(function(keyword) {
+      var kw = keyword.toLowerCase();
+      if (roleWords.some(function(w) { return w.indexOf(kw) !== -1 || kw.indexOf(w) !== -1; })) {
+        score += 2;
+      }
+    });
+
+    var roleLC = profile.role.toLowerCase();
+    if (roleLC.indexOf('engineer') !== -1 || roleLC.indexOf('ml') !== -1 || roleLC.indexOf('machine learning') !== -1) {
+      if (job.keywords.indexOf('machine learning') !== -1 || job.keywords.indexOf('deep learning') !== -1 || job.keywords.indexOf('engineering') !== -1) {
+        reasons.push('Your engineering background aligns well with this technical role');
+        score += 3;
+      }
+    }
+    if (roleLC.indexOf('product') !== -1 || roleLC.indexOf('pm') !== -1) {
+      if (job.keywords.indexOf('product management') !== -1 || job.keywords.indexOf('roadmap') !== -1) {
+        reasons.push('Your product experience maps directly to this role');
+        score += 3;
+      }
+    }
+    if (roleLC.indexOf('research') !== -1 || roleLC.indexOf('phd') !== -1 || roleLC.indexOf('scientist') !== -1) {
+      if (job.keywords.indexOf('research') !== -1 || job.keywords.indexOf('AI research') !== -1) {
+        reasons.push('Your research background is a strong match for this position');
+        score += 4;
+      }
+    }
+    if (roleLC.indexOf('marketing') !== -1 || roleLC.indexOf('growth') !== -1) {
+      if (job.keywords.indexOf('marketing') !== -1 || job.keywords.indexOf('growth') !== -1) {
+        reasons.push('Your growth and marketing expertise is exactly what this role needs');
+        score += 3;
+      }
+    }
+    if (roleLC.indexOf('sales') !== -1 || roleLC.indexOf('business dev') !== -1) {
+      if (job.keywords.indexOf('sales') !== -1 || job.keywords.indexOf('business development') !== -1) {
+        reasons.push('Your business development experience translates well here');
+        score += 3;
+      }
+    }
+    if (roleLC.indexOf('senior') !== -1 || roleLC.indexOf('lead') !== -1 || roleLC.indexOf('head') !== -1 || roleLC.indexOf('director') !== -1 || roleLC.indexOf('vp') !== -1) {
+      if (job.keywords.indexOf('leadership') !== -1 || job.keywords.indexOf('executive') !== -1 || job.title.indexOf('Senior') !== -1 || job.title.indexOf('Head') !== -1 || job.title.indexOf('VP') !== -1) {
+        reasons.push('Your seniority level matches the leadership expectations');
+        score += 2;
+      }
+    }
+    if (roleLC.indexOf('design') !== -1 || roleLC.indexOf('ux') !== -1 || roleLC.indexOf('ui') !== -1) {
+      reasons.push('Your design expertise would bring strong product thinking to this role');
+      score += 2;
+    }
+    if (roleLC.indexOf('founder') !== -1 || roleLC.indexOf('eir') !== -1 || roleLC.indexOf('entrepreneur') !== -1) {
+      if (job.keywords.indexOf('founding team') !== -1 || job.keywords.indexOf('startup') !== -1 || job.keywords.indexOf('strategy') !== -1) {
+        reasons.push('Your entrepreneurial experience is a great fit for this founding-stage role');
+        score += 3;
+      }
+    }
+
+    if (reasons.length === 0) {
+      if (score > 0) {
+        reasons.push('Your skill set has meaningful overlap with the requirements for this role');
+      } else {
+        reasons.push('This role at an AI-focused company could be a natural next step given your background');
+        score = 1;
+      }
+    }
+
+    var pct = Math.min(97, Math.max(60, Math.round(55 + score * 5)));
+    return {
+      id: job.id, title: job.title, company: job.company,
+      companyDesc: job.companyDesc, desc: job.desc, tags: job.tags,
+      location: job.location, seniority: job.seniority, stage: job.stage,
+      score: score, pct: pct, reason: reasons[0]
+    };
+  });
+
+  scored.sort(function(a, b) { return b.score - a.score; });
+  return scored.slice(0, 4);
+}
+
+function renderMatches(matches) {
+  var container = document.getElementById('matchResults');
+  var html = '';
+  for (var i = 0; i < matches.length; i++) {
+    var m = matches[i];
+    var tagsHtml = '';
+    for (var j = 0; j < m.tags.length; j++) {
+      tagsHtml += '<span class="match-tag">' + m.tags[j] + '</span>';
+    }
+    var subtitle = m.companyDesc || m.desc;
+    var locationHtml = m.location ? ' · ' + m.location : '';
+    html += '<div class="match-card" style="animation: fadeUp 0.4s ease both ' + (0.1 + i * 0.08) + 's;">'
+      + '<div class="match-header"><div>'
+      + '<div class="match-title">' + m.title + '</div>'
+      + '<div class="match-company"><strong>' + m.company + '</strong> — ' + subtitle + locationHtml + '</div>'
+      + '</div><div class="match-score">' + m.pct + '% match</div></div>'
+      + '<div class="match-reason"><div class="match-reason-label">Why we think you\'re a fit</div>'
+      + '<div class="match-reason-text">' + m.reason + '</div></div>'
+      + '<div class="match-tags">' + tagsHtml + '</div>'
+      + '<a href="job.html?id=' + (m.id || '') + '" class="match-apply">View role <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>'
+      + '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function refineMatches() {
+  var interest = document.getElementById('interestText').value.trim();
+  if (!interest) return;
+  profileData.notes = interest;
+  var matches = generateMatches(profileData);
+  renderMatches(matches);
+  updateSheetEntry(profileData);
+  document.getElementById('matchResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// AIRTABLE LEAD CAPTURE
+// ============================================================
+var leadRecordId = null; // track current lead's Airtable record ID
+
+// Look up an existing lead by LinkedIn URL
+function lookupLead(linkedinUrl, callback) {
+  var filter = encodeURIComponent("{LinkedIn URL}='" + linkedinUrl.replace(/'/g, "\\'") + "'");
+  proxyFetch(airtableLeadsUrl('?filterByFormula=' + filter + '&maxRecords=1'))
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.records && data.records.length > 0) {
+      var rec = data.records[0];
+      leadRecordId = rec.id;
+      var f = rec.fields;
+      callback({
+        name: f['Name'] || '',
+        email: f['Email'] || '',
+        role: f['Current Role'] || '',
+        details: f['Details'] || ''
+      });
+    } else {
+      leadRecordId = null;
+      callback(null);
+    }
+  })
+  .catch(function() { callback(null); });
+}
+
+// Create a new lead record (step 1 — LinkedIn URL + parsed name)
+function createLead(data, callback) {
+  proxyFetch(airtableLeadsUrl(), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      fields: {
+        'LinkedIn URL': data.linkedinUrl || '',
+        'Name': data.name || '',
+        'Date Added': new Date().toISOString()
+      }
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(rec) {
+    if (rec.id) leadRecordId = rec.id;
+    if (callback) callback();
+  })
+  .catch(function() {
+    if (callback) callback();
+  });
+}
+
+// Update the existing lead record with full profile data (step 2 onward)
+function updateLead(data) {
+  if (!leadRecordId) return;
+  var fields = {
+    'Name': data.name || '',
+    'Email': data.email || '',
+    'Current Role': data.role || '',
+    'Details': data.notes || ''
+  };
+  proxyFetch(airtableLeadsUrl('/' + leadRecordId), {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ fields: fields })
+  }).catch(function() {});
+}
+
+function updateSheetEntry(data) {
+  updateLead(data);
+}
+
+// ============================================================
+// BACK NAVIGATION
+// ============================================================
+function goBackToStep1() {
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('step1').classList.add('active');
+  document.getElementById('dot1').className = 'progress-dot active';
+  document.getElementById('line1').className = 'progress-line';
+  document.getElementById('dot2').className = 'progress-dot';
+  document.getElementById('linkedinBtn').disabled = false;
+  document.getElementById('linkedinBtn').textContent = 'CONTINUE';
+  hideError();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBackToStep2() {
+  document.getElementById('step3').classList.remove('active');
+  document.getElementById('step2').classList.add('active');
+  document.getElementById('dot2').className = 'progress-dot active';
+  document.getElementById('line2').className = 'progress-line';
+  document.getElementById('dot3').className = 'progress-dot';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// EVENT LISTENERS
+// ============================================================
+document.getElementById('linkedinUrl').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') submitLinkedIn();
+});
+
+document.getElementById('linkedinUrl').addEventListener('input', function() {
+  this.style.borderColor = '';
+});
+
+['fieldName', 'fieldEmail', 'fieldRole'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', function() {
+    this.style.borderColor = '';
+  });
+});
+</script>
+
+</body>
+</html>

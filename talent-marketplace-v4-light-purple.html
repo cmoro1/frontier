@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup jobs — Mila Ventures</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Inverted light purple palette */
+  --bg-page: #f3eff8;
+  --bg-card: #ffffff;
+  --bg-nav: #0e0b1a;
+  --accent: #a78bfa;
+  --accent-dark: #6d28d9;
+  --accent-deeper: #4c1d95;
+  --accent-light: #c4b5fd;
+  --accent-bg: #ece5fb;
+  --text-dark: #1a1230;
+  --text-secondary: #4a3d6b;
+  --text-muted: #8878a9;
+  --border-light: #e0d8ed;
+  --border-lighter: #ece5f5;
+  /* Original dark palette for nav */
+  --nav-text: #ede8f5;
+  --nav-dimmed: #9b93b8;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== NAV (stays dark for contrast) ========== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 64px;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border-lighter);
+}
+
+.logo-lockup { display: flex; align-items: center; gap: 12px; }
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.logo-location {
+  font-family: var(--font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(167,139,250,0.8);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+
+/* ========== HERO ========== */
+.hero {
+  text-align: center;
+  padding: 80px 64px 48px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-dark);
+  font-weight: 300;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 36px;
+}
+
+.hero-ctas {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--accent-dark);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--text-dark);
+  padding: 16px 36px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.hero-stat {
+  margin-bottom: 8px;
+}
+
+.hero-stat-number {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+
+/* ========== MAIN CONTENT AREA ========== */
+.content-area {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 64px 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ========== SEARCH / FILTERS ========== */
+.filters-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: stretch;
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px 20px 15px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 18px center;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.filter-select {
+  padding: 15px 40px 15px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  min-width: 180px;
+  transition: border-color 0.3s;
+}
+
+.filter-select:focus { border-color: var(--accent); }
+
+.more-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 15px 22px;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.more-filters-btn:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+.more-filters-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.3s;
+}
+
+.more-filters-btn.open svg {
+  transform: rotate(180deg);
+}
+
+/* ========== EXPANDED FILTERS ========== */
+.expanded-filters {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  gap: 20px;
+  animation: fadeUp 0.25s ease both;
+  position: relative;
+  z-index: 60;
+}
+
+.expanded-filters.open {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.filter-group label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+/* Custom multi-select dropdown */
+.ms-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.ms-trigger {
+  width: 100%;
+  padding: 11px 36px 11px 14px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  text-align: left;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238878a9' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-trigger:hover { border-color: var(--accent); }
+.ms-trigger.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+.ms-trigger.has-selection { color: var(--accent-dark); font-weight: 500; }
+
+.ms-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  z-index: 50;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.ms-menu.open { display: block; }
+
+.ms-option {
+  padding: 9px 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+}
+
+.ms-option:hover { background: var(--accent-bg); }
+
+.ms-option.selected {
+  color: var(--accent-dark);
+  font-weight: 500;
+  background: rgba(167,139,250,0.06);
+}
+
+/* Clear all button */
+.clear-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 0;
+}
+
+.clear-all-btn:hover { color: var(--accent-dark); }
+
+.clear-all-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ========== TALENT LIST ========== */
+.talent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+a.talent-card, .talent-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+.talent-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 10px 0 0 10px;
+}
+
+/* Accent bar colors per category */
+.talent-card[data-category="engineering"]::before { background: var(--accent); }
+.talent-card[data-category="product"]::before { background: #f59e0b; }
+.talent-card[data-category="research"]::before { background: #10b981; }
+.talent-card[data-category="design"]::before { background: #f472b6; }
+.talent-card[data-category="operations"]::before { background: #fb923c; }
+.talent-card[data-category="growth"]::before { background: #38bdf8; }
+.talent-card[data-category="data"]::before { background: #a78bfa; }
+
+.talent-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.card-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-name {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.card-detail {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.card-detail strong {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  background: var(--bg-page);
+}
+
+.tag.highlight {
+  border-color: rgba(167,139,250,0.25);
+  color: var(--accent-dark);
+  background: rgba(167,139,250,0.06);
+}
+
+.tag.open {
+  border-color: rgba(16,185,129,0.25);
+  color: #059669;
+  background: rgba(16,185,129,0.06);
+}
+
+.card-external {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.3s;
+  align-self: center;
+}
+
+.card-external:hover { background: var(--accent-bg); }
+
+.card-external svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 2;
+}
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.btn-similar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-page);
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.btn-similar:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.btn-similar svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-muted);
+  fill: none;
+  stroke-width: 2;
+}
+
+.btn-similar:hover svg {
+  stroke: var(--accent-dark);
+}
+
+.btn-similar[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text-dark);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 24px 24px;
+  border: 1px solid var(--border-lighter);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.sidebar-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.sidebar-input {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+
+.sidebar-input::placeholder { color: var(--text-muted); }
+.sidebar-input:focus { border-color: var(--accent); }
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--text-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 2px;
+}
+
+.sidebar-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.sidebar-linkedin-followup {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-lighter);
+  animation: fadeUp 0.35s ease both;
+}
+.sidebar-linkedin-followup.active { display: block; }
+.sidebar-linkedin-msg {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.sidebar-linkedin-row {
+  display: flex;
+  gap: 8px;
+}
+.sidebar-linkedin-input {
+  flex: 1;
+  padding: 10px 12px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s;
+}
+.sidebar-linkedin-input::placeholder { color: var(--text-muted); }
+.sidebar-linkedin-input:focus { border-color: var(--accent); }
+.sidebar-linkedin-submit {
+  padding: 10px 16px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.sidebar-linkedin-submit:hover { background: var(--accent-deeper); }
+.sidebar-linkedin-skip {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  padding: 0;
+  transition: color 0.3s;
+}
+.sidebar-linkedin-skip:hover { color: var(--text-secondary); }
+
+/* ========== CAN'T FIND A POSTING ========== */
+.hero-fallback {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  animation: fadeUp 0.6s ease both 0.4s;
+}
+
+.hero-fallback a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.hero-fallback a:hover {
+  color: var(--accent-deeper);
+  border-bottom-color: var(--accent-deeper);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 48, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 40px 36px 36px;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--accent-bg);
+  color: var(--text-dark);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.modal-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-field {
+  margin-bottom: 14px;
+}
+
+.modal-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.modal-input {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-input::placeholder { color: var(--text-muted); }
+.modal-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.modal-textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  resize: vertical;
+  min-height: 90px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-textarea::placeholder { color: var(--text-muted); }
+.modal-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(167,139,250,0.1); }
+
+.modal-submit {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: var(--accent-dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 6px;
+}
+
+.modal-submit:hover {
+  background: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109,40,217,0.25);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation: fadeUp 0.6s ease both; }
+.hero h1 { animation: fadeUp 0.6s ease both 0.1s; }
+.hero-subtitle { animation: fadeUp 0.6s ease both 0.2s; }
+.hero-ctas { animation: fadeUp 0.6s ease both 0.3s; }
+.hero-stat { animation: fadeUp 0.6s ease both 0.35s; }
+
+.talent-card { animation: fadeUp 0.4s ease both; }
+.talent-card:nth-child(1) { animation-delay: 0.05s; }
+.talent-card:nth-child(2) { animation-delay: 0.08s; }
+.talent-card:nth-child(3) { animation-delay: 0.11s; }
+.talent-card:nth-child(4) { animation-delay: 0.14s; }
+.talent-card:nth-child(5) { animation-delay: 0.17s; }
+.talent-card:nth-child(6) { animation-delay: 0.20s; }
+.talent-card:nth-child(7) { animation-delay: 0.23s; }
+.talent-card:nth-child(8) { animation-delay: 0.26s; }
+.talent-card:nth-child(9) { animation-delay: 0.29s; }
+.talent-card:nth-child(10) { animation-delay: 0.32s; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .content-area {
+    grid-template-columns: 1fr;
+    padding: 24px 24px 60px;
+  }
+  .sidebar { position: static; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .hero { padding: 48px 24px 36px; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .filters-row { flex-direction: column; }
+  .filter-select { min-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="logo-lockup">
+    <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Delicate open 'M' monogram with serif-inspired terminals -->
+      <path d="M6 28V10l4.5 6.5L18 6l7.5 10.5L30 10v18" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="18" cy="6" r="1.6" fill="#a78bfa"/>
+      <line x1="6" y1="28" x2="8.5" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="27.5" y1="28" x2="30" y2="28" stroke="#6d28d9" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-name">Mila Ventures</div>
+  </div>
+  <div class="nav-right">
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <h1>Build the AI that<br><em>should</em> exist</h1>
+  <p class="hero-subtitle">Join a Mila Ventures portfolio company and work at the frontier of artificial intelligence</p>
+  <div class="hero-ctas">
+    <a href="find-your-fit.html" class="btn-primary">Find your fit →</a>
+  </div>
+  <p class="hero-fallback">Can't find a posting you love? <a onclick="openProfileModal()">Send us your profile and we'll find a match</a></p>
+</section>
+
+<!-- ========== PROFILE SUBMISSION MODAL ========== -->
+<div class="modal-overlay" id="profileModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeProfileModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-title">Send us your profile</div>
+    <p class="modal-desc">Tell us a bit about yourself and we'll match you with the right opportunity at a Mila Ventures portfolio company.</p>
+    <div class="modal-field">
+      <label class="modal-label">Name <span style="color:var(--accent-dark);">*</span></label>
+      <input type="text" class="modal-input" placeholder="Your full name" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Email <span style="color:var(--accent-dark);">*</span></label>
+      <input type="email" class="modal-input" placeholder="you@example.com" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">LinkedIn URL <span style="color:var(--accent-dark);">*</span></label>
+      <input type="url" class="modal-input" placeholder="https://linkedin.com/in/yourprofile" required>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Tell us what you're excited about <span style="color:var(--text-muted); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+      <textarea class="modal-textarea" placeholder="What kind of problems do you want to solve? What stage of company excites you?"></textarea>
+    </div>
+    <button class="modal-submit">Submit Profile</button>
+  </div>
+</div>
+
+
+<!-- ========== MAIN CONTENT ========== -->
+<div class="content-area">
+  <main>
+    <!-- Filters -->
+    <div class="filters-row">
+      <input type="text" class="search-input" placeholder="Search by job title, company, or keyword...">
+      <button class="more-filters-btn" onclick="toggleFilters()">
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        Filters
+      </button>
+    </div>
+
+    <div class="expanded-filters" id="expandedFilters">
+      <div class="filter-group">
+        <label>Location</label>
+        <div class="ms-dropdown" id="filterLocation" data-field="location">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Montreal" onclick="toggleOption(this)">Montreal</div>
+            <div class="ms-option" data-value="Toronto" onclick="toggleOption(this)">Toronto</div>
+            <div class="ms-option" data-value="Vancouver" onclick="toggleOption(this)">Vancouver</div>
+            <div class="ms-option" data-value="Remote - Canada" onclick="toggleOption(this)">Remote - Canada</div>
+            <div class="ms-option" data-value="Remote - USA" onclick="toggleOption(this)">Remote - USA</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Stage</label>
+        <div class="ms-dropdown" id="filterStage" data-field="stage">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Pre-Seed" onclick="toggleOption(this)">Pre-Seed</div>
+            <div class="ms-option" data-value="Seed" onclick="toggleOption(this)">Seed</div>
+            <div class="ms-option" data-value="Series A" onclick="toggleOption(this)">Series A</div>
+            <div class="ms-option" data-value="Series B+" onclick="toggleOption(this)">Series B+</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>AI Domain</label>
+        <div class="ms-dropdown" id="filterAIDomain" data-field="aiDomain">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Computer Vision" onclick="toggleOption(this)">Computer Vision</div>
+            <div class="ms-option" data-value="NLP" onclick="toggleOption(this)">NLP</div>
+            <div class="ms-option" data-value="LLMs" onclick="toggleOption(this)">LLMs</div>
+            <div class="ms-option" data-value="Reinforcement Learning" onclick="toggleOption(this)">Reinforcement Learning</div>
+            <div class="ms-option" data-value="Generative AI" onclick="toggleOption(this)">Generative AI</div>
+            <div class="ms-option" data-value="Robotics" onclick="toggleOption(this)">Robotics</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Seniority</label>
+        <div class="ms-dropdown" id="filterSeniority" data-field="seniority">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Intern / Co-op" onclick="toggleOption(this)">Intern / Co-op</div>
+            <div class="ms-option" data-value="Junior (0-2 years)" onclick="toggleOption(this)">Junior (0-2 years)</div>
+            <div class="ms-option" data-value="Mid (3-5 years)" onclick="toggleOption(this)">Mid (3-5 years)</div>
+            <div class="ms-option" data-value="Senior (5+ years)" onclick="toggleOption(this)">Senior (5+ years)</div>
+            <div class="ms-option" data-value="Lead / Staff" onclick="toggleOption(this)">Lead / Staff</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Industry</label>
+        <div class="ms-dropdown" id="filterIndustry" data-field="industry">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Health Tech" onclick="toggleOption(this)">Health Tech</div>
+            <div class="ms-option" data-value="Life Sciences" onclick="toggleOption(this)">Life Sciences</div>
+            <div class="ms-option" data-value="Ag / Food Tech" onclick="toggleOption(this)">Ag / Food Tech</div>
+            <div class="ms-option" data-value="Fintech" onclick="toggleOption(this)">Fintech</div>
+            <div class="ms-option" data-value="Climate Tech" onclick="toggleOption(this)">Climate Tech</div>
+            <div class="ms-option" data-value="Energy" onclick="toggleOption(this)">Energy</div>
+            <div class="ms-option" data-value="Autonomous Systems" onclick="toggleOption(this)">Autonomous Systems</div>
+            <div class="ms-option" data-value="EdTech" onclick="toggleOption(this)">EdTech</div>
+            <div class="ms-option" data-value="Creative & Media" onclick="toggleOption(this)">Creative & Media</div>
+            <div class="ms-option" data-value="Manufacturing & Supply Chain" onclick="toggleOption(this)">Manufacturing & Supply Chain</div>
+            <div class="ms-option" data-value="Cybersecurity" onclick="toggleOption(this)">Cybersecurity</div>
+            <div class="ms-option" data-value="Foundational AI" onclick="toggleOption(this)">Foundational AI</div>
+            <div class="ms-option" data-value="AI Infrastructure" onclick="toggleOption(this)">AI Infrastructure</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Department</label>
+        <div class="ms-dropdown" id="filterDepartment" data-field="department">
+          <button class="ms-trigger" onclick="toggleMenu(this)">All</button>
+          <div class="ms-menu">
+            <div class="ms-option" data-value="Founding / Executive Team" onclick="toggleOption(this)">Founding / Executive Team</div>
+            <div class="ms-option" data-value="Engineering" onclick="toggleOption(this)">Engineering</div>
+            <div class="ms-option" data-value="Product" onclick="toggleOption(this)">Product</div>
+            <div class="ms-option" data-value="Research & Development" onclick="toggleOption(this)">Research & Development</div>
+            <div class="ms-option" data-value="Design" onclick="toggleOption(this)">Design</div>
+            <div class="ms-option" data-value="Marketing" onclick="toggleOption(this)">Marketing</div>
+            <div class="ms-option" data-value="Sales & GTM" onclick="toggleOption(this)">Sales & GTM</div>
+            <div class="ms-option" data-value="Operations" onclick="toggleOption(this)">Operations</div>
+            <div class="ms-option" data-value="People / HR" onclick="toggleOption(this)">People / HR</div>
+            <div class="ms-option" data-value="Finance" onclick="toggleOption(this)">Finance</div>
+            <div class="ms-option" data-value="Other" onclick="toggleOption(this)">Other</div>
+          </div>
+        </div>
+      </div>
+      <button class="clear-all-btn" onclick="clearAllFilters()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Clear all
+      </button>
+    </div>
+
+    <!-- Job Listings (loaded from Airtable) -->
+    <div class="talent-list" id="jobList">
+      <div style="text-align:center; padding:48px 0; color:var(--text-muted); font-size:14px;">Loading roles...</div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Stay Close to the Frontier</div>
+      <p class="sidebar-desc">New roles at tomorrow's biggest AI companies, straight to your inbox.</p>
+      <input type="text" class="sidebar-input" placeholder="Your name">
+      <input type="email" class="sidebar-input" placeholder="Your email">
+      <button class="sidebar-btn">I'm in</button>
+      <div class="sidebar-linkedin-followup" id="linkedinFollowup">
+        <p class="sidebar-linkedin-msg">Want better-tailored matches? Add your LinkedIn so we can learn more about you.</p>
+        <div class="sidebar-linkedin-row">
+          <input type="url" class="sidebar-linkedin-input" id="sidebarLinkedin" placeholder="linkedin.com/in/yourprofile">
+          <button class="sidebar-linkedin-submit" id="sidebarLinkedinBtn">Submit</button>
+        </div>
+        <button class="sidebar-linkedin-skip" id="sidebarLinkedinSkip">Skip for now</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+// ============================================================
+// Airtable Configuration
+// ============================================================
+var PROXY_URL = 'https://frontier-proxy.christinamoro3.workers.dev';
+var AIRTABLE_BASE_ID = 'appP3T62XSwUvnCZk';
+var AIRTABLE_JOBS_TABLE = 'Job%20Listings';
+var AIRTABLE_LEADS_TABLE = 'Lead%20Capture';
+
+// Proxy helper — routes Airtable API calls through Cloudflare Worker
+function proxyFetch(airtablePath, options) {
+  options = options || {};
+  var headers = options.headers || {};
+  headers['X-Airtable-Path'] = airtablePath;
+  options.headers = headers;
+  return fetch(PROXY_URL + '/proxy', options);
+}
+
+function airtableLeadsUrl(extra) {
+  return '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_LEADS_TABLE + (extra || '');
+}
+
+var allJobs = [];
+
+// Category-to-color mapping for avatar badges
+var CATEGORY_COLORS = {
+  engineering: '#6d28d9', product: '#f59e0b', research: '#10b981',
+  design: '#f472b6', operations: '#fb923c', growth: '#38bdf8',
+  data: '#a78bfa', marketing: '#0d9488', sales: '#6366f1',
+  'default': '#1e293b'
+};
+
+// Helper: normalize a field value to a flat array of strings
+// Airtable multi-select → array, single-select → string, missing → empty
+function toArray(val) {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  return [val];
+}
+
+// ============================================================
+// Fetch jobs from Airtable
+// ============================================================
+function fetchJobs() {
+  var path = '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_JOBS_TABLE
+    + '?filterByFormula=' + encodeURIComponent("{Status}='Open'");
+
+  proxyFetch(path)
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (!data.records) {
+      document.getElementById('jobList').innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);">Could not load jobs. Please try again later.</div>';
+      return;
+    }
+    allJobs = data.records.map(function(rec) {
+      var f = rec.fields;
+      return {
+        id: rec.id,
+        title: f['Job Title'] || '',
+        company: f['Company'] || '',
+        companyDesc: f['Company Description (1-liner)'] || '',
+        companyUrl: f['Company Website URL'] || '',
+        desc: f['Job Description'] || '',
+        tags: f['Tags'] || [],
+        keywords: (f['Keywords'] || '').split(',').map(function(k) { return k.trim().toLowerCase(); }).filter(Boolean),
+        category: f['Category'] || '',
+        status: f['Status'] || '',
+        datePosted: f['Date Posted'] || '',
+        location: f['Location'] || '',
+        seniority: f['Seniority'] || '',
+        stage: f['Stage'] || '',
+        aiDomain: f['AI Domain'] || '',
+        industry: f['Industry'] || '',
+        department: f['Department'] || ''
+      };
+    });
+
+    renderJobs(allJobs);
+  })
+  .catch(function() {
+    document.getElementById('jobList').innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);">Could not load jobs. Please try again later.</div>';
+  });
+}
+
+// ============================================================
+// Check if a job was posted within last 7 days
+// ============================================================
+function isNew(dateStr) {
+  if (!dateStr) return false;
+  var posted = new Date(dateStr);
+  var now = new Date();
+  var diff = (now - posted) / (1000 * 60 * 60 * 24);
+  return diff <= 7;
+}
+
+// ============================================================
+// Render individual tags — handles both arrays and strings
+// ============================================================
+function renderTagsHtml(value, cssClass) {
+  var items = toArray(value);
+  var html = '';
+  items.forEach(function(v) {
+    if (v) html += '<span class="tag ' + cssClass + '">' + escHtml(v) + '</span>';
+  });
+  return html;
+}
+
+// ============================================================
+// Render job cards
+// ============================================================
+function renderJobs(jobs) {
+  var list = document.getElementById('jobList');
+
+  if (jobs.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:48px 0;color:var(--text-muted);font-size:14px;">No roles match your search. Try adjusting filters or <a href="find-your-fit.html" style="color:var(--accent-dark);text-decoration:none;border-bottom:1px solid var(--accent-dark);">find your fit</a>.</div>';
+    return;
+  }
+
+  var html = '';
+  jobs.forEach(function(job, i) {
+    var cat = (job.category || 'default').toLowerCase();
+    var avatarColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS['default'];
+    var initial = (job.company || '?')[0].toUpperCase();
+    var detail = job.companyDesc ? job.companyDesc : (job.desc ? job.desc.substring(0, 100) + '...' : '');
+    var delay = Math.min(i * 0.03, 0.32);
+
+    html += '<a href="job.html?id=' + job.id + '" class="talent-card" data-category="' + cat + '" style="animation-delay:' + delay + 's;">';
+    html += '<div class="card-avatar" style="background:' + avatarColor + ';">' + initial + '</div>';
+    html += '<div class="card-body">';
+    html += '<div class="card-name">' + escHtml(job.title) + '</div>';
+    html += '<div class="card-detail"><strong>' + escHtml(job.company) + '</strong>';
+    if (detail) html += ' &mdash; ' + escHtml(detail);
+    html += '</div>';
+    html += '<div class="card-tags">';
+    html += renderTagsHtml(job.aiDomain, 'highlight');
+    html += renderTagsHtml(job.department, '');
+    html += renderTagsHtml(job.industry, '');
+    html += renderTagsHtml(job.location, '');
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="card-actions">';
+    html += '<span class="card-external"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>';
+    html += '</div>';
+    html += '</a>';
+  });
+
+  list.innerHTML = html;
+}
+
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ============================================================
+// Multi-select dropdown logic
+// ============================================================
+function toggleMenu(triggerBtn) {
+  var menu = triggerBtn.nextElementSibling;
+  var wasOpen = menu.classList.contains('open');
+
+  // Close all open menus first
+  closeAllMenus();
+
+  if (!wasOpen) {
+    menu.classList.add('open');
+    triggerBtn.classList.add('active');
+  }
+}
+
+function closeAllMenus() {
+  document.querySelectorAll('.ms-menu.open').forEach(function(m) { m.classList.remove('open'); });
+  document.querySelectorAll('.ms-trigger.active').forEach(function(t) { t.classList.remove('active'); });
+}
+
+// Close menus when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.ms-dropdown')) {
+    closeAllMenus();
+  }
+});
+
+function toggleOption(optEl) {
+  optEl.classList.toggle('selected');
+  updateTriggerLabel(optEl.closest('.ms-dropdown'));
+  applyFilters();
+}
+
+function updateTriggerLabel(dropdown) {
+  var selected = dropdown.querySelectorAll('.ms-option.selected');
+  var trigger = dropdown.querySelector('.ms-trigger');
+  if (selected.length === 0) {
+    trigger.textContent = 'All';
+    trigger.classList.remove('has-selection');
+  } else if (selected.length === 1) {
+    trigger.textContent = selected[0].getAttribute('data-value');
+    trigger.classList.add('has-selection');
+  } else {
+    trigger.textContent = selected.length + ' selected';
+    trigger.classList.add('has-selection');
+  }
+}
+
+function getSelectedValues(dropdownId) {
+  var dropdown = document.getElementById(dropdownId);
+  if (!dropdown) return [];
+  var selected = dropdown.querySelectorAll('.ms-option.selected');
+  var values = [];
+  selected.forEach(function(opt) { values.push(opt.getAttribute('data-value')); });
+  return values;
+}
+
+function clearAllFilters() {
+  // Clear search
+  document.querySelector('.search-input').value = '';
+  // Clear all multi-select selections
+  document.querySelectorAll('.ms-option.selected').forEach(function(opt) {
+    opt.classList.remove('selected');
+  });
+  // Reset all trigger labels
+  document.querySelectorAll('.ms-dropdown').forEach(function(dd) {
+    updateTriggerLabel(dd);
+  });
+  applyFilters();
+}
+
+// ============================================================
+// Search & Filter (OR logic for multi-select)
+// ============================================================
+function matchesFilter(jobFieldValues, selectedValues) {
+  // No filter selected = match all
+  if (selectedValues.length === 0) return true;
+  // OR logic: job matches if ANY of its values is in the selected set
+  var jobVals = toArray(jobFieldValues);
+  for (var i = 0; i < jobVals.length; i++) {
+    if (selectedValues.indexOf(jobVals[i]) !== -1) return true;
+  }
+  return false;
+}
+
+function applyFilters() {
+  var query = (document.querySelector('.search-input').value || '').toLowerCase().trim();
+  var locFilter = getSelectedValues('filterLocation');
+  var stageFilter = getSelectedValues('filterStage');
+  var aiFilter = getSelectedValues('filterAIDomain');
+  var senFilter = getSelectedValues('filterSeniority');
+  var indFilter = getSelectedValues('filterIndustry');
+  var deptFilter = getSelectedValues('filterDepartment');
+
+  var filtered = allJobs.filter(function(job) {
+    // Text search
+    if (query) {
+      var parts = [job.title, job.company, job.companyDesc, job.desc]
+        .concat(toArray(job.department), toArray(job.location), toArray(job.aiDomain), toArray(job.industry))
+        .concat(job.tags, job.keywords);
+      var haystack = parts.join(' ').toLowerCase();
+      if (haystack.indexOf(query) === -1) return false;
+    }
+    // Multi-select filters with OR logic
+    if (!matchesFilter(job.location, locFilter)) return false;
+    if (!matchesFilter(job.stage, stageFilter)) return false;
+    if (!matchesFilter(job.aiDomain, aiFilter)) return false;
+    if (!matchesFilter(job.seniority, senFilter)) return false;
+    if (!matchesFilter(job.industry, indFilter)) return false;
+    if (!matchesFilter(job.department, deptFilter)) return false;
+    return true;
+  });
+
+  renderJobs(filtered);
+}
+
+// Wire up search input
+document.querySelector('.search-input').addEventListener('input', applyFilters);
+
+// ============================================================
+// UI Helpers
+// ============================================================
+function toggleFilters() {
+  var panel = document.getElementById('expandedFilters');
+  var btn = document.querySelector('.more-filters-btn');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function openProfileModal() {
+  document.getElementById('profileModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfileModal() {
+  document.getElementById('profileModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.getElementById('profileModal').addEventListener('click', function(e) {
+  if (e.target === this) closeProfileModal();
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeProfileModal();
+});
+
+// ============================================================
+// Profile modal submit → Airtable Lead Capture
+// ============================================================
+document.querySelector('.modal-submit').addEventListener('click', function() {
+  var inputs = document.querySelectorAll('.modal-input');
+  var textarea = document.querySelector('.modal-textarea');
+  var name = inputs[0].value.trim();
+  var email = inputs[1].value.trim();
+  var linkedin = inputs[2].value.trim();
+  var note = textarea.value.trim();
+
+  if (!name || !email || !linkedin) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  var btn = document.querySelector('.modal-submit');
+  btn.textContent = 'SUBMITTING...';
+  btn.disabled = true;
+
+  // Submit to Airtable Lead Capture
+  proxyFetch(airtableLeadsUrl(), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fields: {
+        'Name': name,
+        'Email': email,
+        'LinkedIn URL': linkedin,
+        'Details': note || '',
+        'Date Added': new Date().toISOString()
+      }
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.error) throw new Error(data.error.message);
+    btn.textContent = 'PROFILE SUBMITTED';
+    btn.style.background = '#059669';
+    setTimeout(function() { closeProfileModal(); }, 1500);
+  })
+  .catch(function() {
+    btn.textContent = 'SUBMIT PROFILE';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  });
+});
+
+// ============================================================
+// Sidebar newsletter signup → Airtable Lead Capture
+// ============================================================
+var sidebarLeadRecordId = null;
+
+document.querySelector('.sidebar-btn').addEventListener('click', function() {
+  var nameInput = document.querySelector('.sidebar-input[type="text"]');
+  var emailInput = document.querySelector('.sidebar-input[type="email"]');
+  var name = nameInput.value.trim();
+  var email = emailInput.value.trim();
+
+  if (!email) {
+    alert('Please enter your email.');
+    return;
+  }
+
+  var btn = document.querySelector('.sidebar-btn');
+  btn.textContent = 'SUBSCRIBING...';
+  btn.disabled = true;
+
+  proxyFetch(airtableLeadsUrl(), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fields: {
+        'Name': name || '',
+        'Email': email,
+        'Details': 'Newsletter subscriber',
+        'Date Added': new Date().toISOString()
+      }
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.error) throw new Error(data.error.message);
+    sidebarLeadRecordId = data.id || null;
+    btn.textContent = "YOU'RE IN!";
+    btn.style.background = '#059669';
+    nameInput.value = '';
+    emailInput.value = '';
+    // Show LinkedIn follow-up
+    document.getElementById('linkedinFollowup').classList.add('active');
+  })
+  .catch(function() {
+    btn.textContent = "I'M IN";
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  });
+});
+
+// ============================================================
+// Sidebar LinkedIn follow-up
+// ============================================================
+document.getElementById('sidebarLinkedinBtn').addEventListener('click', function() {
+  var input = document.getElementById('sidebarLinkedin');
+  var url = input.value.trim();
+
+  if (!url || url.indexOf('linkedin.com/in/') === -1) {
+    input.style.borderColor = 'var(--error)';
+    return;
+  }
+  input.style.borderColor = '';
+
+  var btn = document.getElementById('sidebarLinkedinBtn');
+  btn.textContent = 'SAVING...';
+  btn.disabled = true;
+
+  if (sidebarLeadRecordId) {
+    // Update the record we just created with the LinkedIn URL
+    proxyFetch(airtableLeadsUrl('/' + sidebarLeadRecordId), {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: { 'LinkedIn URL': url }
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      btn.textContent = 'SAVED!';
+      btn.style.background = '#059669';
+      input.disabled = true;
+    })
+    .catch(function() {
+      btn.textContent = 'SUBMIT';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
+  }
+});
+
+document.getElementById('sidebarLinkedinSkip').addEventListener('click', function() {
+  document.getElementById('linkedinFollowup').classList.remove('active');
+});
+
+document.getElementById('sidebarLinkedin').addEventListener('input', function() {
+  this.style.borderColor = '';
+});
+
+// ============================================================
+// Load on page start: fetch metadata (for filters) + jobs in parallel
+// ============================================================
+fetchJobs();
+</script>
+
+</body>
+</html>
