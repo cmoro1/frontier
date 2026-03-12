@@ -390,7 +390,7 @@ function submitApplication() {
 
     // Step 2: Upload CV file to the record's attachment field
     if (cvFile && recordId) {
-      var uploadPath = '/v0/' + AIRTABLE_BASE_ID + '/' + recordId + '/CV%20File/uploadAttachment';
+      var uploadPath = '/v0/' + AIRTABLE_BASE_ID + '/' + AIRTABLE_CV_TABLE + '/' + recordId + '/CV%20File/uploadAttachment';
       var formData = new FormData();
       formData.append('file', cvFile);
 
